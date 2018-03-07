@@ -1,0 +1,71 @@
+a:9:{s:6:"config";a:5:{s:10:"phpVersion";s:6:"5.6.30";s:10:"yiiVersion";s:6:"2.0.10";s:11:"application";a:5:{s:3:"yii";s:6:"2.0.10";s:4:"name";s:14:"My Application";s:7:"version";s:3:"1.0";s:3:"env";s:4:"prod";s:5:"debug";b:0;}s:3:"php";a:5:{s:7:"version";s:6:"5.6.30";s:6:"xdebug";b:0;s:3:"apc";b:0;s:8:"memcache";b:0;s:9:"memcached";b:0;}s:10:"extensions";a:5:{s:24:"yiisoft/yii2-swiftmailer";a:3:{s:4:"name";s:24:"yiisoft/yii2-swiftmailer";s:7:"version";s:7:"2.0.6.0";s:5:"alias";a:1:{s:16:"@yii/swiftmailer";s:58:"/home/svm00/svm.biz.ua/www/vendor/yiisoft/yii2-swiftmailer";}}s:22:"yiisoft/yii2-bootstrap";a:3:{s:4:"name";s:22:"yiisoft/yii2-bootstrap";s:7:"version";s:7:"2.0.6.0";s:5:"alias";a:1:{s:14:"@yii/bootstrap";s:56:"/home/svm00/svm.biz.ua/www/vendor/yiisoft/yii2-bootstrap";}}s:18:"yiisoft/yii2-debug";a:3:{s:4:"name";s:18:"yiisoft/yii2-debug";s:7:"version";s:7:"2.0.7.0";s:5:"alias";a:1:{s:10:"@yii/debug";s:52:"/home/svm00/svm.biz.ua/www/vendor/yiisoft/yii2-debug";}}s:16:"yiisoft/yii2-gii";a:3:{s:4:"name";s:16:"yiisoft/yii2-gii";s:7:"version";s:7:"2.0.5.0";s:5:"alias";a:1:{s:8:"@yii/gii";s:50:"/home/svm00/svm.biz.ua/www/vendor/yiisoft/yii2-gii";}}s:18:"yiisoft/yii2-faker";a:3:{s:4:"name";s:18:"yiisoft/yii2-faker";s:7:"version";s:7:"2.0.3.0";s:5:"alias";a:1:{s:10:"@yii/faker";s:52:"/home/svm00/svm.biz.ua/www/vendor/yiisoft/yii2-faker";}}}}s:7:"request";a:14:{s:7:"flashes";a:0:{}s:10:"statusCode";i:200;s:14:"requestHeaders";a:14:{s:4:"host";s:14:"www.svm.biz.ua";s:18:"geoip-country-code";s:2:"UA";s:10:"connection";s:5:"close";s:14:"content-length";s:6:"147793";s:6:"pragma";s:8:"no-cache";s:13:"cache-control";s:8:"no-cache";s:6:"origin";s:21:"http://build-1.tw1.ru";s:10:"user-agent";s:151:"Mozilla/5.0 (Linux; Android 6.0.1; MI MAX Build/MMB29M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/58.0.3029.83 Mobile Safari/537.36";s:12:"content-type";s:68:"multipart/form-data; boundary=----WebKitFormBoundaryJHv5WsnEgthdR9py";s:6:"accept";s:3:"*/*";s:7:"referer";s:44:"http://build-1.tw1.ru/user-profile-edit.html";s:15:"accept-encoding";s:13:"gzip, deflate";s:15:"accept-language";s:17:"ru-RU,en-US;q=0.8";s:16:"x-requested-with";s:12:"avto.souz.rf";}s:15:"responseHeaders";a:5:{s:27:"Access-Control-Allow-Origin";s:21:"http://build-1.tw1.ru";s:32:"Access-Control-Allow-Credentials";s:4:"true";s:22:"Access-Control-Max-Age";s:5:"86400";s:28:"Access-Control-Allow-Headers";s:53:"X-Requested-With, Accept, Content-Type, Authorization";s:12:"Content-Type";s:31:"application/json; charset=UTF-8";}s:5:"route";s:17:"v1/gallery/create";s:6:"action";s:60:"api\modules\v1\controllers\GalleryController::actionCreate()";s:12:"actionParams";a:0:{}s:11:"requestBody";a:0:{}s:6:"SERVER";a:58:{s:6:"TMPDIR";s:23:"/home/svm00/.system/tmp";s:5:"PHPRC";s:42:"/home/svm00/.system/php/www.svm.biz.ua.ini";s:6:"LC_ALL";s:12:"ru_RU.CP1251";s:4:"TEMP";s:23:"/home/svm00/.system/tmp";s:4:"PATH";s:28:"/usr/local/bin:/usr/bin:/bin";s:3:"PWD";s:26:"/home/svm00/svm.biz.ua/www";s:5:"SHLVL";s:1:"0";s:3:"TMP";s:23:"/home/svm00/.system/tmp";s:11:"HTTP_ACCEPT";s:3:"*/*";s:20:"HTTP_ACCEPT_ENCODING";s:13:"gzip, deflate";s:20:"HTTP_ACCEPT_LANGUAGE";s:17:"ru-RU,en-US;q=0.8";s:15:"HTTP_CONNECTION";s:5:"close";s:12:"CONTENT_TYPE";s:68:"multipart/form-data; boundary=----WebKitFormBoundaryJHv5WsnEgthdR9py";s:14:"CONTENT_LENGTH";s:6:"147793";s:9:"HTTP_HOST";s:14:"www.svm.biz.ua";s:11:"HTTP_PRAGMA";s:8:"no-cache";s:12:"HTTP_REFERER";s:44:"http://build-1.tw1.ru/user-profile-edit.html";s:15:"HTTP_USER_AGENT";s:151:"Mozilla/5.0 (Linux; Android 6.0.1; MI MAX Build/MMB29M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/58.0.3029.83 Mobile Safari/537.36";s:18:"HTTP_CACHE_CONTROL";s:8:"no-cache";s:23:"HTTP_GEOIP_COUNTRY_CODE";s:2:"UA";s:11:"HTTP_ORIGIN";s:21:"http://build-1.tw1.ru";s:21:"HTTP_X_REQUESTED_WITH";s:12:"avto.souz.rf";s:18:"REDIRECT_UNIQUE_ID";s:24:"WSa451vOyJYADW9hvI0AAACP";s:21:"REDIRECT_DETECTED_CMS";s:9:"undefined";s:19:"REDIRECT_SCRIPT_URL";s:26:"/api/web/v1/gallery/create";s:19:"REDIRECT_SCRIPT_URI";s:47:"http://www.svm.biz.ua/api/web/v1/gallery/create";s:17:"REDIRECT_vhost_id";s:6:"979089";s:12:"REDIRECT_PWD";s:26:"/home/svm00/svm.biz.ua/www";s:12:"REDIRECT_TMP";s:23:"/home/svm00/.system/tmp";s:13:"REDIRECT_TEMP";s:23:"/home/svm00/.system/tmp";s:15:"REDIRECT_STATUS";s:3:"200";s:9:"UNIQUE_ID";s:24:"WSa451vOyJYADW9hvI0AAACP";s:10:"SCRIPT_URL";s:26:"/api/web/v1/gallery/create";s:10:"SCRIPT_URI";s:47:"http://www.svm.biz.ua/api/web/v1/gallery/create";s:8:"vhost_id";s:6:"979089";s:16:"SERVER_SIGNATURE";s:0:"";s:15:"SERVER_SOFTWARE";s:6:"Apache";s:11:"SERVER_NAME";s:14:"www.svm.biz.ua";s:11:"SERVER_ADDR";s:9:"127.0.0.1";s:11:"SERVER_PORT";s:2:"80";s:11:"REMOTE_ADDR";s:13:"77.120.134.28";s:13:"DOCUMENT_ROOT";s:26:"/home/svm00/svm.biz.ua/www";s:14:"REQUEST_SCHEME";s:4:"http";s:14:"CONTEXT_PREFIX";s:0:"";s:21:"CONTEXT_DOCUMENT_ROOT";s:26:"/home/svm00/svm.biz.ua/www";s:12:"SERVER_ADMIN";s:21:"vista545457@gmail.com";s:15:"SCRIPT_FILENAME";s:44:"/home/svm00/svm.biz.ua/www/api/web/index.php";s:11:"REMOTE_PORT";s:5:"42410";s:12:"REDIRECT_URL";s:26:"/api/web/v1/gallery/create";s:21:"REDIRECT_QUERY_STRING";s:0:"";s:15:"SERVER_PROTOCOL";s:8:"HTTP/1.0";s:14:"REQUEST_METHOD";s:4:"POST";s:12:"QUERY_STRING";s:0:"";s:11:"REQUEST_URI";s:27:"/api/web/v1/gallery/create?";s:11:"SCRIPT_NAME";s:18:"/api/web/index.php";s:8:"PHP_SELF";s:18:"/api/web/index.php";s:18:"REQUEST_TIME_FLOAT";d:1495709927.2102210521697998046875;s:12:"REQUEST_TIME";i:1495709927;}s:3:"GET";a:0:{}s:4:"POST";a:1:{s:7:"user_id";s:3:"162";}s:6:"COOKIE";a:0:{}s:5:"FILES";a:1:{s:4:"file";a:5:{s:4:"name";s:23:"IMG_20170518_122622.jpg";s:4:"type";s:0:"";s:8:"tmp_name";s:0:"";s:5:"error";i:7;s:4:"size";i:0;}}s:7:"SESSION";a:0:{}}s:3:"log";a:1:{s:8:"messages";a:5:{i:0;a:5:{i:0;s:39:"Rate limit skipped: user not logged in.";i:1;i:4;i:2;s:37:"yii\filters\RateLimiter::beforeAction";i:3;d:1495709927.2424180507659912109375;i:4;a:0:{}}i:1;a:5:{i:0;s:31:"SHOW FULL COLUMNS FROM `galery`";i:1;i:4;i:2;s:21:"yii\db\Command::query";i:3;d:1495709927.253262042999267578125;i:4;a:0:{}}i:2;a:5:{i:0;s:76:"Opening DB connection: mysql:host=svm00.mysql.ukraine.com.ua;dbname=svm00_db";i:1;i:4;i:2;s:23:"yii\db\Connection::open";i:3;d:1495709927.2532789707183837890625;i:4;a:0:{}}i:7;a:5:{i:0;s:599:"SELECT
+    kcu.constraint_name,
+    kcu.column_name,
+    kcu.referenced_table_name,
+    kcu.referenced_column_name
+FROM information_schema.referential_constraints AS rc
+JOIN information_schema.key_column_usage AS kcu ON
+    (
+        kcu.constraint_catalog = rc.constraint_catalog OR
+        (kcu.constraint_catalog IS NULL AND rc.constraint_catalog IS NULL)
+    ) AND
+    kcu.constraint_schema = rc.constraint_schema AND
+    kcu.constraint_name = rc.constraint_name
+WHERE rc.constraint_schema = database() AND kcu.table_schema = database()
+AND rc.table_name = 'galery' AND kcu.table_name = 'galery'";i:1;i:4;i:2;s:21:"yii\db\Command::query";i:3;d:1495709927.25537109375;i:4;a:0:{}}i:10;a:5:{i:0;s:102:"Access to debugger is denied due to IP address restriction. The requesting IP address is 77.120.134.28";i:1;i:2;i:2;s:29:"yii\debug\Module::checkAccess";i:3;d:1495709927.257215023040771484375;i:4;a:0:{}}}}s:9:"profiling";a:3:{s:6:"memory";i:6161752;s:4:"time";d:0.042755126953125;s:8:"messages";a:6:{i:3;a:5:{i:0;s:76:"Opening DB connection: mysql:host=svm00.mysql.ukraine.com.ua;dbname=svm00_db";i:1;i:80;i:2;s:23:"yii\db\Connection::open";i:3;d:1495709927.253283023834228515625;i:4;a:0:{}}i:4;a:5:{i:0;s:76:"Opening DB connection: mysql:host=svm00.mysql.ukraine.com.ua;dbname=svm00_db";i:1;i:96;i:2;s:23:"yii\db\Connection::open";i:3;d:1495709927.25424098968505859375;i:4;a:0:{}}i:5;a:5:{i:0;s:31:"SHOW FULL COLUMNS FROM `galery`";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1495709927.254261016845703125;i:4;a:0:{}}i:6;a:5:{i:0;s:31:"SHOW FULL COLUMNS FROM `galery`";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1495709927.2548849582672119140625;i:4;a:0:{}}i:8;a:5:{i:0;s:599:"SELECT
+    kcu.constraint_name,
+    kcu.column_name,
+    kcu.referenced_table_name,
+    kcu.referenced_column_name
+FROM information_schema.referential_constraints AS rc
+JOIN information_schema.key_column_usage AS kcu ON
+    (
+        kcu.constraint_catalog = rc.constraint_catalog OR
+        (kcu.constraint_catalog IS NULL AND rc.constraint_catalog IS NULL)
+    ) AND
+    kcu.constraint_schema = rc.constraint_schema AND
+    kcu.constraint_name = rc.constraint_name
+WHERE rc.constraint_schema = database() AND kcu.table_schema = database()
+AND rc.table_name = 'galery' AND kcu.table_name = 'galery'";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1495709927.2553880214691162109375;i:4;a:0:{}}i:9;a:5:{i:0;s:599:"SELECT
+    kcu.constraint_name,
+    kcu.column_name,
+    kcu.referenced_table_name,
+    kcu.referenced_column_name
+FROM information_schema.referential_constraints AS rc
+JOIN information_schema.key_column_usage AS kcu ON
+    (
+        kcu.constraint_catalog = rc.constraint_catalog OR
+        (kcu.constraint_catalog IS NULL AND rc.constraint_catalog IS NULL)
+    ) AND
+    kcu.constraint_schema = rc.constraint_schema AND
+    kcu.constraint_name = rc.constraint_name
+WHERE rc.constraint_schema = database() AND kcu.table_schema = database()
+AND rc.table_name = 'galery' AND kcu.table_name = 'galery'";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1495709927.256164073944091796875;i:4;a:0:{}}}}s:2:"db";a:1:{s:8:"messages";a:4:{i:5;a:5:{i:0;s:31:"SHOW FULL COLUMNS FROM `galery`";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1495709927.254261016845703125;i:4;a:0:{}}i:6;a:5:{i:0;s:31:"SHOW FULL COLUMNS FROM `galery`";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1495709927.2548849582672119140625;i:4;a:0:{}}i:8;a:5:{i:0;s:599:"SELECT
+    kcu.constraint_name,
+    kcu.column_name,
+    kcu.referenced_table_name,
+    kcu.referenced_column_name
+FROM information_schema.referential_constraints AS rc
+JOIN information_schema.key_column_usage AS kcu ON
+    (
+        kcu.constraint_catalog = rc.constraint_catalog OR
+        (kcu.constraint_catalog IS NULL AND rc.constraint_catalog IS NULL)
+    ) AND
+    kcu.constraint_schema = rc.constraint_schema AND
+    kcu.constraint_name = rc.constraint_name
+WHERE rc.constraint_schema = database() AND kcu.table_schema = database()
+AND rc.table_name = 'galery' AND kcu.table_name = 'galery'";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1495709927.2553880214691162109375;i:4;a:0:{}}i:9;a:5:{i:0;s:599:"SELECT
+    kcu.constraint_name,
+    kcu.column_name,
+    kcu.referenced_table_name,
+    kcu.referenced_column_name
+FROM information_schema.referential_constraints AS rc
+JOIN information_schema.key_column_usage AS kcu ON
+    (
+        kcu.constraint_catalog = rc.constraint_catalog OR
+        (kcu.constraint_catalog IS NULL AND rc.constraint_catalog IS NULL)
+    ) AND
+    kcu.constraint_schema = rc.constraint_schema AND
+    kcu.constraint_name = rc.constraint_name
+WHERE rc.constraint_schema = database() AND kcu.table_schema = database()
+AND rc.table_name = 'galery' AND kcu.table_name = 'galery'";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1495709927.256164073944091796875;i:4;a:0:{}}}}s:6:"assets";a:0:{}s:4:"mail";a:0:{}s:8:"timeline";a:2:{s:5:"start";d:1495709927.2160999774932861328125;s:3:"end";d:1495709927.2596900463104248046875;}s:7:"summary";a:9:{s:3:"tag";s:13:"5926b8e7387be";s:3:"url";s:48:"http://www.svm.biz.ua/api/web/v1/gallery/create?";s:4:"ajax";i:0;s:6:"method";s:4:"POST";s:2:"ip";s:13:"77.120.134.28";s:4:"time";i:1495709927;s:10:"statusCode";i:200;s:8:"sqlCount";i:2;s:9:"mailCount";i:0;}}

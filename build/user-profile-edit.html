@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <title>TuningSouz </title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <!--if IE script(src="http://html5shiv.googlecode.com/svn/trunk/html5.js")-->
+    <!--Media queries-->
+    <meta name="viewport" content="width=device-width, target-densitydpi=device-dpi, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!--CSS LINKS--><!--[if lte IE 8]>
+    <link rel="stylesheet" href="css/ie8.css" media="screen, projection"><![endif]-->
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="css/ie9.css" media="screen, projection"><![endif]-->
+    <!--Main style-->
+    <link href="css/widgets.css" rel="stylesheet" media="screen">
+    <link href="css/gallery/jquery.galereya.css" rel="stylesheet" media="screen">
+    <link href="css/main.css" rel="stylesheet" media="screen">
+    <link href="css/menus.css" rel="stylesheet" media="screen">
+    <style>
+#profile-edit-skills input[type="checkbox"] {
+    margin: 10px;
+}
+#profile-edit-skills {
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+.hierarchy-0 {
+    margin-left: 30px;
+    margin-bottom: 10px;
+}
+#avatar-preview {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%,0);
+}
+    </style>
+</head>
+<body onload="loginCtrl.profile_edit()" style="overflow-y:hidden; -webkit-overflow-scrolling: touch;">
+<div class="wrapper" style="height:100vh;">
+    <div class="wrapper-inner">
+        <header role="banner" class="header">
+            <div class="header-inner">
+                <div class="container"><span onclick="loginCtrl.getUnread()"
+                                             class="btn menu-open left"><span></span><span></span><span></span></span>
+                    <div class="top-menu-holder">
+                        <div class="top-user-image"><img src="http://placehold.it/350x150" alt=""></div>
+                        <div class="top-user-menu">
+                            <ul class="user-list">
+                                <li class="mail"><a href="#"><span class="fa fa-envelope"><i class="fa fa-picture-o" aria-hidden="true"></i></span></a></li>
+                                <li class="review"><a href="#"><span class="fa fa-star-half-o"></span></a></li>
+                                <li><a href="friend-list.html"><span class="fa fa-address-book"></span></a></li>
+                                <li><a href="user-profile-edit.html"><span class="fa fa-cog"></span></a></li>
+                                <li><a href="index.html"><span class="fa fa-sign-out"></span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="side left">
+            <div class="side-inner">
+                <div class="user-menu">
+                    <div class="user-menu_header">
+                        <ul>
+                            <li><a href="#" class="user back"><span class="fa fa-long-arrow-left">close</span></a></li>
+                            <li><a href="user-profile-edit.html" class="user settings"><span
+                                    class="fa fa-cog">settings</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="user-menu_content">
+                        <div class="user-photo">
+                            <div class="photo-wrap">
+                                <div class="photo-wrap_inner"><img src="http://placehold.it/350x150" alt="user photo">
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="user-menu_list">
+                          <li id="name_surname_menu">Имя Фамилия</li>
+                        	<li><a href="user-profile-view.html"><i class="fa fa-user" aria-hidden="true"></i>Профиль</a></li>
+                        	<li><a href="friend-list.html"><i class="fa fa-users" aria-hidden="true"></i>Коллеги</a></li>
+                        	<li><a href="messages-list.html"><i class="fa fa-comments-o" aria-hidden="true"></i><i  id="msg">Сообщения</i></a></li>
+                            <li class="tuningsouz">TuningSouz</li>
+                            <li><a href="news-view.html"><i class="fa fa-newspaper-o" aria-hidden="true"></i>Новости</a></li>
+                            <li><a href="basket.html"><i class="fa fa-shopping-basket" aria-hidden="true"></i>Корзина</a></li>
+                            <li><a href="categories.html"><i class="fa fa-shopping-bag" aria-hidden="true"></i>Магазин</a></li>
+                            <li><a href="#" onclick="window.open('https://m.youtube.com/channel/UCLAZBCysrdf5qlzNZOCChNA', '_system');"><i class="fa fa-youtube-square" aria-hidden="true"></i>Видеоканал</a></li>
+                            <li><a href="support.html"><i class="fa fa-question-circle" aria-hidden="true"></i>Тех. поддержка</a></li>
+                            <li id="invite-menu-item"><a href="invite.html"><i class="fa fa-question-circle" aria-hidden="true"></i>Пригласить</a></li>
+                            <li id="vacancies-menu-item"><a href="vacancies.html"><i class="fa fa-briefcase" aria-hidden="true"></i>Вакансии</a></li>
+                            <!--<li><a href="vacancies-inner.html">Поиск услуг</a></li>-->
+                            <li><a href="event_request.html"><i class="fa fa-graduation-cap" aria-hidden="true"></i>Семинар</a></li>
+                            <li><a href="calendar.html"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>Календарь мероприятий</a></li>
+                            <li><a href="about-us.html"><i class="fa fa-diamond" aria-hidden="true"></i>О нас</a></li>
+                            
+                            <!--<li><a href="#" class="link logout"><span class="fa fa-sign-out"></span></a></li>-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="side center">
+                <div class="user-info-holder edit">
+                    <div class="user-tabs">
+                        <ul class="user-tab-list">
+                            <li class="user-tab-item active"><span class="tab-title">информация</span></li>
+                            <li onclick="loginCtrl.getEntries()" class="user-tab-item"><span
+                                    class="tab-title">записи</span></li>
+                            <li onclick="loginCtrl.getFeedBack()" class="user-tab-item"><span
+                                    class="tab-title">отзывы</span></li>
+                            <li class="user-tab-item" onclick="loginCtrl.gallery_index()"><span class="tab-title">галерея</span>
+                            </li>
+                        </ul>
+                        <!--<ul class="user-tab-list">-->
+                        <!--<li class="user-tab-item active"><span class="tab-title">информация</span></li>-->
+                        <!--<li class="user-tab-item"><span class="tab-title">записи</span></li>-->
+                        <!--<li class="user-tab-item"><span class="tab-title">отзывы</span></li>-->
+                        <!--<li onclick="loginCtrl.gallery_index()" class="user-tab-item"><span class="tab-title">Галерея</span>-->
+                        <!--</li>-->
+                        <!--</ul>-->
+                        <div class="tabs-holder">
+                            <div class="user-about" id="user-about-edit-parent">
+                                <script id="user-about-edit-template" type="text/x-handlebars-template">
+
+                                    <form action="#" class="form user-edit" name="user-edit-form">
+                                        <div class="user-about_top">
+                                            <ul class="user-top-list">
+                                                <li class="hide-elements"><a href="#" class="link mail"><span
+                                                        class="fa fa-envelope"></span></a></li>
+                                                <li>
+                                                    <div class="user-info-img" id="user-avatar"><a id="blah1"
+                                                            href=""
+                                                            data-fancybox-group="gallery" class="fancybox"><img id="blah"
+                                                            alt=""></a>
+
+                                                    </div>
+                                                    <div class="row edit">
+                                                        <canvas id="avatar-preview" width="150" height="150" class="avatar-preview" style="display:none;">Браузер не поддерживает html5 canvas</canvas>
+                                                        <!--<div class="user-photo-edit">-->
+<!--                                                        <label>
+                                                            <input hidden type="file" id="file">Загрузить фото</label> -->
+                                                            
+                                                        <input hidden type="file" id="file">
+                                                        <label for="file" style="cursor:pointer;">Загрузить фото</label>
+                                                        
+                                                        <!--</div>-->
+                                                    </div>
+                                                    <div class="row edit ">
+                                                        <input name="username" type="text" placeholder="введите имя"
+                                                               class="input"
+                                                               value="{{username}}">
+                                                    </div>
+                                                </li>
+                                                <li class="hide-elements"><a href="#" class="link friend"><span
+                                                        class="fa fa-user-plus"></span></a></li>
+                                            </ul>
+                                        </div>
+                                        <!--<div class="user-about_middle">-->
+                                        <!--<ul class="user-middle-list">-->
+                                        <!--<li><span class="title-text">подписчики</span><span class="count-text">250</span>-->
+                                        <!--</li>-->
+                                        <!--<li><span class="title-text">подписки</span><span-->
+                                        <!--class="count-text">199</span></li>-->
+                                        <!--<li><span class="title-text">фотографии</span><span class="count-text">58</span>-->
+                                        <!--</li>-->
+                                        <!--<li><span class="title-text">статьи</span><span-->
+                                        <!--class="count-text">115</span></li>-->
+                                        <!--</ul>-->
+                                        <!--</div>-->
+                                        <div class="user-about_bottom">
+                                            <ul class="user-bottom-list">
+                                                <li><span class="about-title">город</span>
+
+                                                    <div class="row edit ">
+                                                        <input name="city" type="text" placeholder="название города"
+                                                               class="input" value="{{city}}">
+                                                    </div>
+                                                </li>
+                                                <li><span class="about-title">адрес доставки</span>
+
+                                                    <div class="row edit ">
+                                                        <input name="address" type="text" placeholder="адрес доставки"
+                                                               class="input" value="{{address}}">
+                                                    </div>
+                                                </li>
+                                                <li><span class="about-title">пол</span>
+
+                                                    <div class="row edit ">
+                                                        <!--<input type="text" name="sex" placeholder="пол" class="input"-->
+                                                        <!--value="{{sex}}">-->
+                                                        <select name="sex" class="select-male">
+                                                            <option value="мужской">мужской</option>
+                                                            <option value="женский">женский</option>
+                                                        </select>
+                                                    </div>
+                                                </li>
+                                                <li><span class="about-title">год рождения</span>
+                                                    <div class="row edit ">
+                                                        <input type="text" name="date_birth" placeholder="год рождения"
+                                                               class="input" value="{{date_birth}}">
+                                                    </div>
+                                                </li>
+                                                <li><span class="about-title">адрес почты</span>
+
+                                                    <div class="row edit ">
+                                                        <input type="email" name="email" placeholder="почта"
+                                                               class="input" value="{{email}}">
+                                                    </div>
+                                                </li>
+                                                <li><span class="about-title">Телефон</span>
+                                                    <div class="row edit">
+                                                        <input type="text" name="phone" value="{{phone}}"
+                                                               placeholder="Телефон" class="input">
+                                                    </div>
+                                                </li>
+                                                <li><span class="about-title">Я в ВК</span>
+                                                    <div class="row edit">
+                                                        <input type="text" name="vk" value="{{vk}}" placeholder="Я в ВК"
+                                                               class="input">
+                                                    </div>
+                                                </li>
+                                                <li><span class="about-title">Специальность</span>
+                                                    <div class="row edit" id="profile-edit-skills">
+<!--                                                        <input type="text" name="skills" value="{{skills}}"
+                                                               placeholder="Специальность"
+                                                               class="input"> -->
+                                                    </div>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+
+                                        <div class="user-about_edit">
+                                            <!--<button class="btn about edit">редактировать информацию</button>-->
+                                            <input type="button" value="сохранить изменения"
+                                                   class="btn about save " onclick="loginCtrl.save_profile()">
+                                        </div>
+                                    </form>
+                                </script>
+                            </div>
+                            <div class="user-posts">
+                                <div class="user-post-add-holder">
+                                    <form name="entry_form" action="#" class="form-holder post-add">
+                                        <div class="form-row">
+                                            <textarea name="text" cols="30" rows="10"
+                                                      placeholder="Новая запись"></textarea>
+                                            <div class="img-send">
+                                                <input id="file_entry" type="file"><span class="fa fa-camera"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <input type="button" value="Отправить" class="btn send"
+                                                   onclick="loginCtrl.sendEntry()">
+                                        </div>
+                                    </form>
+                                </div>
+
+
+                                <ul class="post-list" id="post-item-parent">
+
+
+                                </ul>
+                            </div>
+                            <div class="user-comments">
+                                <div class="comment-send-holder" id="comment-send-holder"><a href="#" class="btn comment">Остановить отзыв</a>
+                                    <form name="feed_back_form" action="#" class="form comment"><span
+                                            class="close fa fa-times"></span>
+                                        <!--<div class="form-row">-->
+                                        <!--<input name="sender_name" type="text" placeholder="Введите имя">-->
+                                        <!--</div>-->
+                                        <div class="form-row">
+                                            <textarea name="text" cols="30" rows="10"
+                                                      placeholder="Введите отзыв"></textarea>
+                                        </div>
+                                        <div class="fowm-row">
+                                            <input type="button" onclick="loginCtrl.sendFeedBack()"
+                                                   value="оставить отзыв" class="btn send">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="user-about">
+                                    <div class="user-about_top">
+                                        <ul class="user-top-list">
+                                            <li></li>
+                                            <li>
+                                                <div class="user-info-img"><img src="http://placehold.it/350x150"
+                                                                                alt=""></div>
+                                                <p class="user-name">имя пользователя</p>
+                                            </li>
+                                            <li></li>
+                                        </ul>
+                                    </div>
+                                    <div class="common-rate"><span>общий рейтинг</span>
+                                        <div class="star"></div>
+                                    </div>
+                                    <!--.hint-->
+                                </div>
+                                <ul class="comment-list" id="feed_back_parent">
+
+                                </ul>
+                            </div>
+                            <div class="user-mail">
+
+
+                                <div id="gal1">
+
+
+                                    <div id="gall_parrent">
+
+
+                                    </div>
+                                    <div class="load-img-button">
+                                        <canvas id="file-preview" width="150" height="150" class="avatar-preview">Браузер не поддерживает html5 canvas</canvas> 
+                                        <div class="button-load-img">
+                                            <span><input type="file" id="file_gallery" class="file-load"></span>
+                                        </div>
+                                        <p class="content-batton">Выбрать Фото</p>
+                                        <button onclick="loginCtrl.gallery_add()" class="save-button">Сохранить
+                                        </button>
+                                    </div>
+                                </div>
+
+
+                                <!--<div class="form-holder message">
+                                    <form action="#">
+                                        <div class="form-row">
+                                            <textarea name="" cols="30" rows="10"
+                                                      placeholder="введите сообщение"></textarea>
+                                            <div class="img-send">
+                                                <input type="file"><span class="fa fa-camera"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <input type="submit" value="отправить" class="btn send">
+                                        </div>
+                                    </form>
+                                </div>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="registration-holder">
+                <div class="wrap-form reg first">
+                    <div class="container">
+                        <div class="wrap-form-inner"></div>
+                        <form action="">
+                            <div class="form-title">
+                                <h2>registration form</h2>
+                            </div>
+                            <div class="form-content">
+                                <div class="form-row">
+                                    <label for="user_name">Введите логин</label>
+                                    <input type="text" name="user_name" placeholder="Введите логин ">
+                                    <label class="error">обязательно поле</label>
+                                </div>
+                                <div class="form-row">
+                                    <label for="user_email">E-mail</label>
+                                    <input type="text" name="user_email" placeholder="E-mail ">
+                                    <label class="error">обязательно поле</label>
+                                </div>
+                                <div class="form-row">
+                                    <label for="user_password">Введите пароль</label>
+                                    <input type="password" name="user_password" placeholder="Введите пароль ">
+                                    <label class="error">обязательно поле</label>
+                                </div>
+                                <div class="form-row">
+                                    <label for="user_password2">Повторите пароль</label>
+                                    <input type="password" name="user_password2" placeholder="Повторите пароль ">
+                                    <label class="error">обязательно поле</label>
+                                </div>
+                                <div class="form-row">
+                                    <label for="user_role">Выберите кто вы?</label>
+                                    <select name="user_role" class="select-role">
+                                        <option value="empty" selected="selected">Выберите кто вы?</option>
+                                        <option value="guest">Гость</option>
+                                        <option value="master">Мастер</option>
+                                        <option value="provider">Поставщик</option>
+                                        <option value="company">Компания</option>
+                                    </select>
+                                    <label class="error">обязательно поле</label>
+                                </div>
+                                <div class="form-row btn-row">
+                                    <input type="submit" name="finish" value="finish" class="btn finish">
+                                    <input type="submit" name="next" value="next step" class="btn next">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="wrap-form reg master">
+                    <div class="container">
+                        <div class="wrap-form-inner"></div>
+                        <form action="#">
+                            <div class="form-title"><a href="#" class="btn bakc">назад</a>
+                                <h2>registration form master</h2>
+                            </div>
+                            <div class="form-content">
+                                <div class="form-row">
+                                    <label for="master_skill">Мастер</label>
+                                    <select name="master_skill" class="master-skill">
+                                        <option value="skill_atigraviyka" selected="selected">Атигравийка</option>
+                                        <option value="skill_vinyl">Цветной винил</option>
+                                        <option value="skill_toning">Тонировка</option>
+                                        <option value="skill_diteyling">Детейлинг</option>
+                                        <option value="skill_graphics">Коммерческая графика</option>
+                                    </select>
+                                    <label class="error">обязательно поле</label>
+                                </div>
+                                <div class="master-inner diteyling">
+                                    <label for="diteyling_skill">Детейлинг</label>
+                                    <div class="checkbox-holder">
+                                        <div class="checkbox-row">
+                                            <input type="checkbox" id="diteyling_skill1">
+                                            <label for="diteyling_skill1"> Полировка</label>
+                                        </div>
+                                        <div class="checkbox-row">
+                                            <input type="checkbox" id="diteyling_skill2">
+                                            <label for="diteyling_skill2"> Химчистка</label>
+                                        </div>
+                                        <div class="checkbox-row">
+                                            <input type="checkbox" id="diteyling_skill3">
+                                            <label for="diteyling_skill3"> Покрытие</label>
+                                        </div>
+                                        <div class="checkbox-row">
+                                            <input type="checkbox" id="diteyling_skill4">
+                                            <label for="diteyling_skill4"> Полировка</label>
+                                        </div>
+                                        <div class="checkbox-row">
+                                            <input type="checkbox" id="diteyling_skill5">
+                                            <label for="diteyling_skill5"> Защитная пленка</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="master-inner graphics">
+                                    <label for="graphic_skill">Коммерческая графика</label>
+                                    <div class="radio-holder">
+                                        <div class="radio-row">
+                                            <input type="radio" id="graphic_skill1" name="graphic_skill">
+                                            <label for="graphic_skill1"> Типография</label>
+                                        </div>
+                                        <div class="radio-row">
+                                            <input type="radio" id="graphic_skill2" name="graphic_skill">
+                                            <label for="graphic_skill2"> Дизайнер</label>
+                                        </div>
+                                        <div class="radio-row">
+                                            <input type="radio" id="graphic_skill3" name="graphic_skill">
+                                            <label for="graphic_skill3"> Монтажник</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row btn-row">
+                                    <input type="submit" value="finish" class="btn finish">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="wrap-form reg provider">
+                    <div class="container">
+                        <div class="wrap-form-inner"></div>
+                        <form action="#">
+                            <div class="form-title"><a href="#" class="btn bakc">назад</a>
+                                <h2>registration form provider</h2>
+                            </div>
+                            <div class="form-content">
+                                <label for="reg_provider">Поставщик</label>
+                                <div class="radio-holder">
+                                    <div class="radio-row">
+                                        <input type="radio" id="provider1" name="provider">
+                                        <label for="provider1"> Типография</label>
+                                    </div>
+                                    <div class="radio-row">
+                                        <input type="radio" id="provider2" name="provider">
+                                        <label for="provider2"> Дизайнер</label>
+                                    </div>
+                                    <div class="radio-row">
+                                        <input type="radio" id="provider3" name="provider">
+                                        <label for="provider3"> Монтажник</label>
+                                    </div>
+                                </div>
+                                <div class="form-row btn-row">
+                                    <input type="submit" value="finish" class="btn finish">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="wrap-form reg company">
+                    <div class="container">
+                        <div class="wrap-form-inner"></div>
+                        <form action="#">
+                            <div class="form-title"><a href="#" class="btn bakc">назад</a>
+                                <h2>registration form company</h2>
+                            </div>
+                            <div class="form-content">
+                                <div class="form-row">
+                                    <label for="company_name">Название компании</label>
+                                    <input type="text" name="company_name" placeholder="Название компании">
+                                    <label class="error">обязательно поле</label>
+                                </div>
+                                <div class="form-row">
+                                    <label for="company_activity">Деятельность</label>
+                                    <input type="text" name="company_activity" placeholder="Деятельность">
+                                    <label class="error">обязательно поле</label>
+                                </div>
+                                <div class="form-row">
+                                    <label for="company_manager">Данные менеджера</label>
+                                    <div class="form-row_inner">
+                                        <input type="text" name="manager_name" placeholder="Имя">
+                                        <label class="error">обязательно поле</label>
+                                    </div>
+                                    <div class="form-row_inner">
+                                        <input type="text" name="manager_surname" placeholder="Фамилия">
+                                        <label class="error">обязательно поле</label>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <label for="company_phone">Номер телефона менеджера</label>
+                                    <input type="text" name="company_phone" placeholder="Номер телефона менеджера">
+                                    <label class="error">обязательно поле</label>
+                                </div>
+                                <div class="form-row">
+                                    <label for="company_site">Ваш сайт</label>
+                                    <input type="text" name="company_site" placeholder="Ваш сайт">
+                                    <label class="error">обязательно поле</label>
+                                </div>
+                                <div class="form-row btn-row">
+                                    <input type="submit" value="finish" class="btn finish">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="login-holder">
+                <div class="wrap-form login">
+                    <div class="container">
+                        <div class="wrap-form-inner"></div>
+                        <form action="#">
+                            <div class="form-title">
+                                <h2>login form</h2>
+                            </div>
+                            <div class="form-content">
+                                <div class="form-row">
+                                    <label for="name">Введите логин</label>
+                                    <input type="text" name="name" placeholder="Введите логин ">
+                                </div>
+                                <div class="form-row">
+                                    <label for="password">Введите пароль</label>
+                                    <input type="password" name="password" placeholder="Введите пароль ">
+                                    <label class="error">обязательно поле</label>
+                                </div>
+                                <div class="form-row btn-row">
+                                    <input type="submit" value="login" class="btn login">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script id="post-item-template" type="text/x-handlebars-template">
+    <li class="post-item post-size">
+        <div onclick="loginCtrl.delete_post({{id}})" class="delete_symbol">X</div>
+        <div class="post-top">
+            <div class="post-left">
+                <div class="post-author">
+                    <div class="author-img"><img src={{avatar}}
+                                                 alt=""></div>
+                    <div class="author-name"><span>{{username}}</span></div>
+                </div>
+                <!--<div class="post-tags-list">-->
+                <!---->
+                <!--</div>-->
+                <ul class="post-tags-list">
+                    <li> {{text}}</li>
+                    <!--<li><a href="#">категория 2</a></li>-->
+                    <!--<li><a href="#">категория 3</a></li>-->
+                </ul>
+            </div>
+            <div class="post-right"><span class="post-date">{{create_date}}</span></div>
+        </div>
+        <div class="post-middle">
+            {{#if attachment}}
+            <div class="img-wrapper">
+
+                <a href="#">
+                    <img src="{{attachment}}" alt=""></a>
+
+            </div>
+            {{/if}}
+        </div>
+        <div class="post-bottom">
+            <ul class="post-controls-list">
+               
+                <li><a href="#" class="link comment"><span
+                        class="fa fa-comment-o"></span><span
+                        class="count like">{{comments_count}}</span></a></li>
+                <li>
+                    <div class="share42init" data-title="{{text}}"></div>
+                    <a href="#" class="link share"><span class="fa fa-share-alt"></span><span
+                            class="count like">10</span></a>
+                </li>
+            </ul>
+            <div class="post comment">
+                <form action="#" class="form post comment" name="commentForm-{{id}}">
+                    <div class="form-row">
+                        <div class="comment-img">
+                            <div class="comment-img-inner"><img
+                                    src="{{comment_avatar}}" alt=""
+                                    class="user-img"></div>
+                        </div>
+                        <input name="user_id" value="{{getter_id}}" hidden>
+                        <input name="entry_id" value="{{id}}" hidden>
+                        <div class="comment-input">
+                            <textarea placeholder="Комментировать..." name="text" cols="30" rows="10"></textarea>
+                        </div>
+                        <div class="comment-submit">
+                            <button type="button" onclick="loginCtrl.sendComment({{id}})"
+                                    class="btn submit fa fa-share-square">
+                                отправить
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="comment_parent_template-{{id}}">
+
+            </div>
+        </div>
+    </li>
+</script>
+<script id="comment_template" type="text/x-handlebars-template">
+    <div class="reviews">
+        <div class="reviews-img">
+            <img src="{{avatar}}" onerror="this.src='http://placehold.it/350x150'" alt="img-user">
+        </div>
+        <div class="reviews-content">
+            <span class="reviews-name">{{username}}</span>
+            <span class="reviews-second_name"></span>
+            <p class="reviews-text">
+                {{text}}</p>
+        </div>
+    </div>
+</script>
+<script id="feed_back_item" type="text/x-handlebars-template">
+    <li class="comment-item">
+        <div class="comment-top">
+            <div class="comment-left">
+                <div class="comment-author">
+                    <div class="author-img"><img src="{{avatar}}"
+                                                 alt=""></div>
+                    <div class="author-name"><span>{{username}}</span></div>
+                </div>
+                <div class="comment-rate">
+                    <div class="star"></div>
+                    <!--.hint-->
+                </div>
+            </div>
+        </div>
+        <div class="comment-middle">
+            <div class="comment-content">
+                <p>{{text}} </p>
+            </div>
+        </div>
+    </li>
+</script>
+<script id="gall_item" type="text/x-handlebars-template">
+    <div style="width: 45%;display: inline-block">
+        <span onclick="loginCtrl.gallery_delete({{id}})" class="delete_gal">X</span>
+
+        <a href="{{img}}"
+           data-fancybox-group="gallery"
+           class="fancybox"><img style="width: 100%"
+                                 src="{{img}}" alt=""></a>
+        <br>
+    </div>
+</script>
+
+<script src="js/jquery.js"></script>
+<script src="js/gallery/jquery.galereya.min.js"></script>
+<script src="js/gallery/gallery.js"></script>
+<!--<script src="js/jquery.mobile.min.js"></script>-->
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/widgets.js"></script>
+<script src="js/functions.js"></script>
+<script src="js/menu.js"></script>
+<script src="js/close-blocks.js"></script>
+<script src="js/app/user/userCtrl.js"></script>
+<script src="js/app/share42.js"></script>
+<script src="common/services/urlService.js"></script>
+<script src="common/services/requestService.js"></script>
+<script src="bower_components/handlebars/handlebars.min.js"></script>
+<script src="bower_components/moment/moment.js"></script>
+<script src="bower_components/moment/locale/ru.js"></script>
+
+</body>
+</html>

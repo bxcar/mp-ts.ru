@@ -1,0 +1,71 @@
+a:9:{s:6:"config";a:5:{s:10:"phpVersion";s:6:"5.6.30";s:10:"yiiVersion";s:6:"2.0.10";s:11:"application";a:5:{s:3:"yii";s:6:"2.0.10";s:4:"name";s:14:"My Application";s:7:"version";s:3:"1.0";s:3:"env";s:4:"prod";s:5:"debug";b:0;}s:3:"php";a:5:{s:7:"version";s:6:"5.6.30";s:6:"xdebug";b:0;s:3:"apc";b:0;s:8:"memcache";b:0;s:9:"memcached";b:0;}s:10:"extensions";a:5:{s:24:"yiisoft/yii2-swiftmailer";a:3:{s:4:"name";s:24:"yiisoft/yii2-swiftmailer";s:7:"version";s:7:"2.0.6.0";s:5:"alias";a:1:{s:16:"@yii/swiftmailer";s:58:"/home/svm00/svm.biz.ua/www/vendor/yiisoft/yii2-swiftmailer";}}s:22:"yiisoft/yii2-bootstrap";a:3:{s:4:"name";s:22:"yiisoft/yii2-bootstrap";s:7:"version";s:7:"2.0.6.0";s:5:"alias";a:1:{s:14:"@yii/bootstrap";s:56:"/home/svm00/svm.biz.ua/www/vendor/yiisoft/yii2-bootstrap";}}s:18:"yiisoft/yii2-debug";a:3:{s:4:"name";s:18:"yiisoft/yii2-debug";s:7:"version";s:7:"2.0.7.0";s:5:"alias";a:1:{s:10:"@yii/debug";s:52:"/home/svm00/svm.biz.ua/www/vendor/yiisoft/yii2-debug";}}s:16:"yiisoft/yii2-gii";a:3:{s:4:"name";s:16:"yiisoft/yii2-gii";s:7:"version";s:7:"2.0.5.0";s:5:"alias";a:1:{s:8:"@yii/gii";s:50:"/home/svm00/svm.biz.ua/www/vendor/yiisoft/yii2-gii";}}s:18:"yiisoft/yii2-faker";a:3:{s:4:"name";s:18:"yiisoft/yii2-faker";s:7:"version";s:7:"2.0.3.0";s:5:"alias";a:1:{s:10:"@yii/faker";s:52:"/home/svm00/svm.biz.ua/www/vendor/yiisoft/yii2-faker";}}}}s:7:"request";a:14:{s:7:"flashes";a:0:{}s:10:"statusCode";i:200;s:14:"requestHeaders";a:14:{s:4:"host";s:14:"www.svm.biz.ua";s:18:"geoip-country-code";s:2:"RU";s:10:"connection";s:5:"close";s:14:"content-length";s:2:"44";s:6:"pragma";s:8:"no-cache";s:13:"cache-control";s:8:"no-cache";s:6:"accept";s:3:"*/*";s:6:"origin";s:21:"http://www.svm.biz.ua";s:16:"x-requested-with";s:14:"XMLHttpRequest";s:10:"user-agent";s:146:"Mozilla/5.0 (Linux; Android 4.4.4; GT-I9192I Build/KTU84P) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/33.0.0.0 Mobile Safari/537.36";s:12:"content-type";s:48:"application/x-www-form-urlencoded; charset=UTF-8";s:7:"referer";s:38:"http://www.svm.biz.ua/build/index.html";s:15:"accept-encoding";s:12:"gzip,deflate";s:15:"accept-language";s:17:"ru-RU,en-US;q=0.8";}s:15:"responseHeaders";a:5:{s:27:"Access-Control-Allow-Origin";s:21:"http://www.svm.biz.ua";s:32:"Access-Control-Allow-Credentials";s:4:"true";s:22:"Access-Control-Max-Age";s:5:"86400";s:28:"Access-Control-Allow-Headers";s:53:"X-Requested-With, Accept, Content-Type, Authorization";s:12:"Content-Type";s:31:"application/json; charset=UTF-8";}s:5:"route";s:13:"v1/user/login";s:6:"action";s:56:"api\modules\v1\controllers\UserController::actionLogin()";s:12:"actionParams";a:0:{}s:11:"requestBody";a:3:{s:12:"Content Type";s:48:"application/x-www-form-urlencoded; charset=UTF-8";s:3:"Raw";s:44:"username=carbon3d%40bk.ru&password=123456789";s:17:"Decoded to Params";a:2:{s:8:"username";s:14:"carbon3d@bk.ru";s:8:"password";s:9:"123456789";}}s:6:"SERVER";a:58:{s:6:"TMPDIR";s:23:"/home/svm00/.system/tmp";s:5:"PHPRC";s:42:"/home/svm00/.system/php/www.svm.biz.ua.ini";s:6:"LC_ALL";s:12:"ru_RU.CP1251";s:4:"TEMP";s:23:"/home/svm00/.system/tmp";s:4:"PATH";s:28:"/usr/local/bin:/usr/bin:/bin";s:3:"PWD";s:26:"/home/svm00/svm.biz.ua/www";s:5:"SHLVL";s:1:"0";s:3:"TMP";s:23:"/home/svm00/.system/tmp";s:11:"HTTP_ACCEPT";s:3:"*/*";s:20:"HTTP_ACCEPT_ENCODING";s:12:"gzip,deflate";s:20:"HTTP_ACCEPT_LANGUAGE";s:17:"ru-RU,en-US;q=0.8";s:15:"HTTP_CONNECTION";s:5:"close";s:12:"CONTENT_TYPE";s:48:"application/x-www-form-urlencoded; charset=UTF-8";s:14:"CONTENT_LENGTH";s:2:"44";s:9:"HTTP_HOST";s:14:"www.svm.biz.ua";s:11:"HTTP_PRAGMA";s:8:"no-cache";s:12:"HTTP_REFERER";s:38:"http://www.svm.biz.ua/build/index.html";s:15:"HTTP_USER_AGENT";s:146:"Mozilla/5.0 (Linux; Android 4.4.4; GT-I9192I Build/KTU84P) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/33.0.0.0 Mobile Safari/537.36";s:18:"HTTP_CACHE_CONTROL";s:8:"no-cache";s:23:"HTTP_GEOIP_COUNTRY_CODE";s:2:"RU";s:11:"HTTP_ORIGIN";s:21:"http://www.svm.biz.ua";s:21:"HTTP_X_REQUESTED_WITH";s:14:"XMLHttpRequest";s:18:"REDIRECT_UNIQUE_ID";s:24:"WJ1-h1vOyJYAClDKAGYAAACF";s:21:"REDIRECT_DETECTED_CMS";s:9:"undefined";s:19:"REDIRECT_SCRIPT_URL";s:22:"/api/web/v1/user/login";s:19:"REDIRECT_SCRIPT_URI";s:43:"http://www.svm.biz.ua/api/web/v1/user/login";s:17:"REDIRECT_vhost_id";s:6:"979089";s:12:"REDIRECT_PWD";s:26:"/home/svm00/svm.biz.ua/www";s:12:"REDIRECT_TMP";s:23:"/home/svm00/.system/tmp";s:13:"REDIRECT_TEMP";s:23:"/home/svm00/.system/tmp";s:15:"REDIRECT_STATUS";s:3:"200";s:9:"UNIQUE_ID";s:24:"WJ1-h1vOyJYAClDKAGYAAACF";s:10:"SCRIPT_URL";s:22:"/api/web/v1/user/login";s:10:"SCRIPT_URI";s:43:"http://www.svm.biz.ua/api/web/v1/user/login";s:8:"vhost_id";s:6:"979089";s:16:"SERVER_SIGNATURE";s:0:"";s:15:"SERVER_SOFTWARE";s:6:"Apache";s:11:"SERVER_NAME";s:14:"www.svm.biz.ua";s:11:"SERVER_ADDR";s:9:"127.0.0.1";s:11:"SERVER_PORT";s:2:"80";s:11:"REMOTE_ADDR";s:12:"95.220.49.88";s:13:"DOCUMENT_ROOT";s:26:"/home/svm00/svm.biz.ua/www";s:14:"REQUEST_SCHEME";s:4:"http";s:14:"CONTEXT_PREFIX";s:0:"";s:21:"CONTEXT_DOCUMENT_ROOT";s:26:"/home/svm00/svm.biz.ua/www";s:12:"SERVER_ADMIN";s:21:"vista545457@gmail.com";s:15:"SCRIPT_FILENAME";s:44:"/home/svm00/svm.biz.ua/www/api/web/index.php";s:11:"REMOTE_PORT";s:5:"36596";s:12:"REDIRECT_URL";s:22:"/api/web/v1/user/login";s:21:"REDIRECT_QUERY_STRING";s:0:"";s:15:"SERVER_PROTOCOL";s:8:"HTTP/1.0";s:14:"REQUEST_METHOD";s:4:"POST";s:12:"QUERY_STRING";s:0:"";s:11:"REQUEST_URI";s:23:"/api/web/v1/user/login?";s:11:"SCRIPT_NAME";s:18:"/api/web/index.php";s:8:"PHP_SELF";s:18:"/api/web/index.php";s:18:"REQUEST_TIME_FLOAT";d:1486716807.8392870426177978515625;s:12:"REQUEST_TIME";i:1486716807;}s:3:"GET";a:0:{}s:4:"POST";a:2:{s:8:"username";s:14:"carbon3d@bk.ru";s:8:"password";s:9:"123456789";}s:6:"COOKIE";a:0:{}s:5:"FILES";a:0:{}s:7:"SESSION";a:0:{}}s:3:"log";a:1:{s:8:"messages";a:8:{i:0;a:5:{i:0;s:39:"Rate limit skipped: user not logged in.";i:1;i:4;i:2;s:37:"yii\filters\RateLimiter::beforeAction";i:3;d:1486716807.879973888397216796875;i:4;a:0:{}}i:1;a:5:{i:0;s:76:"Opening DB connection: mysql:host=svm00.mysql.ukraine.com.ua;dbname=svm00_db";i:1;i:4;i:2;s:23:"yii\db\Connection::open";i:3;d:1486716808.0669651031494140625;i:4;a:0:{}}i:4;a:5:{i:0;s:71:"SELECT * FROM `user` WHERE (`email`='carbon3d@bk.ru') AND (`status`=10)";i:1;i:4;i:2;s:21:"yii\db\Command::query";i:3;d:1486716808.0681591033935546875;i:4;a:0:{}}i:7;a:5:{i:0;s:29:"SHOW FULL COLUMNS FROM `user`";i:1;i:4;i:2;s:21:"yii\db\Command::query";i:3;d:1486716808.0748870372772216796875;i:4;a:0:{}}i:10;a:5:{i:0;s:595:"SELECT
+    kcu.constraint_name,
+    kcu.column_name,
+    kcu.referenced_table_name,
+    kcu.referenced_column_name
+FROM information_schema.referential_constraints AS rc
+JOIN information_schema.key_column_usage AS kcu ON
+    (
+        kcu.constraint_catalog = rc.constraint_catalog OR
+        (kcu.constraint_catalog IS NULL AND rc.constraint_catalog IS NULL)
+    ) AND
+    kcu.constraint_schema = rc.constraint_schema AND
+    kcu.constraint_name = rc.constraint_name
+WHERE rc.constraint_schema = database() AND kcu.table_schema = database()
+AND rc.table_name = 'user' AND kcu.table_name = 'user'";i:1;i:4;i:2;s:21:"yii\db\Command::query";i:3;d:1486716808.07973003387451171875;i:4;a:0:{}}i:13;a:5:{i:0;s:58:"User '5' logged in from 95.220.49.88. Session not enabled.";i:1;i:4;i:2;s:19:"yii\web\User::login";i:3;d:1486716808.7117650508880615234375;i:4;a:0:{}}i:14;a:5:{i:0;s:33:"SELECT * FROM `user` WHERE `id`=5";i:1;i:4;i:2;s:21:"yii\db\Command::query";i:3;d:1486716808.712049007415771484375;i:4;a:0:{}}i:17;a:5:{i:0;s:101:"Access to debugger is denied due to IP address restriction. The requesting IP address is 95.220.49.88";i:1;i:2;i:2;s:29:"yii\debug\Module::checkAccess";i:3;d:1486716808.7141149044036865234375;i:4;a:0:{}}}}s:9:"profiling";a:3:{s:6:"memory";i:7280440;s:4:"time";d:0.869966983795166015625;s:8:"messages";a:10:{i:2;a:5:{i:0;s:76:"Opening DB connection: mysql:host=svm00.mysql.ukraine.com.ua;dbname=svm00_db";i:1;i:80;i:2;s:23:"yii\db\Connection::open";i:3;d:1486716808.0669729709625244140625;i:4;a:0:{}}i:3;a:5:{i:0;s:76:"Opening DB connection: mysql:host=svm00.mysql.ukraine.com.ua;dbname=svm00_db";i:1;i:96;i:2;s:23:"yii\db\Connection::open";i:3;d:1486716808.06810092926025390625;i:4;a:0:{}}i:5;a:5:{i:0;s:71:"SELECT * FROM `user` WHERE (`email`='carbon3d@bk.ru') AND (`status`=10)";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1486716808.0681989192962646484375;i:4;a:0:{}}i:6;a:5:{i:0;s:71:"SELECT * FROM `user` WHERE (`email`='carbon3d@bk.ru') AND (`status`=10)";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1486716808.06871509552001953125;i:4;a:0:{}}i:8;a:5:{i:0;s:29:"SHOW FULL COLUMNS FROM `user`";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1486716808.07491397857666015625;i:4;a:0:{}}i:9;a:5:{i:0;s:29:"SHOW FULL COLUMNS FROM `user`";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1486716808.0755460262298583984375;i:4;a:0:{}}i:11;a:5:{i:0;s:595:"SELECT
+    kcu.constraint_name,
+    kcu.column_name,
+    kcu.referenced_table_name,
+    kcu.referenced_column_name
+FROM information_schema.referential_constraints AS rc
+JOIN information_schema.key_column_usage AS kcu ON
+    (
+        kcu.constraint_catalog = rc.constraint_catalog OR
+        (kcu.constraint_catalog IS NULL AND rc.constraint_catalog IS NULL)
+    ) AND
+    kcu.constraint_schema = rc.constraint_schema AND
+    kcu.constraint_name = rc.constraint_name
+WHERE rc.constraint_schema = database() AND kcu.table_schema = database()
+AND rc.table_name = 'user' AND kcu.table_name = 'user'";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1486716808.0797650814056396484375;i:4;a:0:{}}i:12;a:5:{i:0;s:595:"SELECT
+    kcu.constraint_name,
+    kcu.column_name,
+    kcu.referenced_table_name,
+    kcu.referenced_column_name
+FROM information_schema.referential_constraints AS rc
+JOIN information_schema.key_column_usage AS kcu ON
+    (
+        kcu.constraint_catalog = rc.constraint_catalog OR
+        (kcu.constraint_catalog IS NULL AND rc.constraint_catalog IS NULL)
+    ) AND
+    kcu.constraint_schema = rc.constraint_schema AND
+    kcu.constraint_name = rc.constraint_name
+WHERE rc.constraint_schema = database() AND kcu.table_schema = database()
+AND rc.table_name = 'user' AND kcu.table_name = 'user'";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1486716808.0801579952239990234375;i:4;a:0:{}}i:15;a:5:{i:0;s:33:"SELECT * FROM `user` WHERE `id`=5";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1486716808.7120800018310546875;i:4;a:0:{}}i:16;a:5:{i:0;s:33:"SELECT * FROM `user` WHERE `id`=5";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1486716808.7124450206756591796875;i:4;a:0:{}}}}s:2:"db";a:1:{s:8:"messages";a:8:{i:5;a:5:{i:0;s:71:"SELECT * FROM `user` WHERE (`email`='carbon3d@bk.ru') AND (`status`=10)";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1486716808.0681989192962646484375;i:4;a:0:{}}i:6;a:5:{i:0;s:71:"SELECT * FROM `user` WHERE (`email`='carbon3d@bk.ru') AND (`status`=10)";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1486716808.06871509552001953125;i:4;a:0:{}}i:8;a:5:{i:0;s:29:"SHOW FULL COLUMNS FROM `user`";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1486716808.07491397857666015625;i:4;a:0:{}}i:9;a:5:{i:0;s:29:"SHOW FULL COLUMNS FROM `user`";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1486716808.0755460262298583984375;i:4;a:0:{}}i:11;a:5:{i:0;s:595:"SELECT
+    kcu.constraint_name,
+    kcu.column_name,
+    kcu.referenced_table_name,
+    kcu.referenced_column_name
+FROM information_schema.referential_constraints AS rc
+JOIN information_schema.key_column_usage AS kcu ON
+    (
+        kcu.constraint_catalog = rc.constraint_catalog OR
+        (kcu.constraint_catalog IS NULL AND rc.constraint_catalog IS NULL)
+    ) AND
+    kcu.constraint_schema = rc.constraint_schema AND
+    kcu.constraint_name = rc.constraint_name
+WHERE rc.constraint_schema = database() AND kcu.table_schema = database()
+AND rc.table_name = 'user' AND kcu.table_name = 'user'";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1486716808.0797650814056396484375;i:4;a:0:{}}i:12;a:5:{i:0;s:595:"SELECT
+    kcu.constraint_name,
+    kcu.column_name,
+    kcu.referenced_table_name,
+    kcu.referenced_column_name
+FROM information_schema.referential_constraints AS rc
+JOIN information_schema.key_column_usage AS kcu ON
+    (
+        kcu.constraint_catalog = rc.constraint_catalog OR
+        (kcu.constraint_catalog IS NULL AND rc.constraint_catalog IS NULL)
+    ) AND
+    kcu.constraint_schema = rc.constraint_schema AND
+    kcu.constraint_name = rc.constraint_name
+WHERE rc.constraint_schema = database() AND kcu.table_schema = database()
+AND rc.table_name = 'user' AND kcu.table_name = 'user'";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1486716808.0801579952239990234375;i:4;a:0:{}}i:15;a:5:{i:0;s:33:"SELECT * FROM `user` WHERE `id`=5";i:1;i:80;i:2;s:21:"yii\db\Command::query";i:3;d:1486716808.7120800018310546875;i:4;a:0:{}}i:16;a:5:{i:0;s:33:"SELECT * FROM `user` WHERE `id`=5";i:1;i:96;i:2;s:21:"yii\db\Command::query";i:3;d:1486716808.7124450206756591796875;i:4;a:0:{}}}}s:6:"assets";a:0:{}s:4:"mail";a:0:{}s:8:"timeline";a:2:{s:5:"start";d:1486716807.845912933349609375;s:3:"end";d:1486716808.71675395965576171875;}s:7:"summary";a:9:{s:3:"tag";s:13:"589d7f87d37ce";s:3:"url";s:44:"http://www.svm.biz.ua/api/web/v1/user/login?";s:4:"ajax";i:1;s:6:"method";s:4:"POST";s:2:"ip";s:12:"95.220.49.88";s:4:"time";i:1486716808;s:10:"statusCode";i:200;s:8:"sqlCount";i:4;s:9:"mailCount";i:0;}}

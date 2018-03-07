@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <title>TuningSouz</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <!--if IE script(src="http://html5shiv.googlecode.com/svn/trunk/html5.js")-->
+    <!--Media queries-->
+    <meta name="viewport" content="width=device-width, target-densitydpi=device-dpi, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!--CSS LINKS--><!--[if lte IE 8]>
+    <link rel="stylesheet" href="css/ie8.css" media="screen, projection"><![endif]-->
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="css/ie9.css" media="screen, projection"><![endif]-->
+    <!--Main style-->
+    <link href="css/widgets.css" rel="stylesheet" media="screen">
+    <link href="css/gallery/jquery.galereya.css" rel="stylesheet" media="screen">
+    <link href="css/main.css" rel="stylesheet" media="screen">
+    <link href="css/menus.css" rel="stylesheet" media="screen">
+    <script src="common/services/urlService.js"></script>
+    <script src="common/services/requestService.js"></script>
+    <style>
+.support {
+    background: none;
+}
+    </style>
+</head>
+<body  onload="loginCtrl.initEventRequest()" style=" -webkit-overflow-scrolling: touch;">
+<div class="wrapper" style="height:100vh;">
+    <div class="wrapper-inner">
+        <header role="banner" class="header">
+            <div class="header-inner">
+                <div class="container"><span onclick="loginCtrl.getUnread()"
+                                             class="btn menu-open left"><span></span><span></span><span></span></span>
+                    
+                </div>
+            </div>
+        </header>
+        <div class="side left">
+            <div class="side-inner">
+                <div class="user-menu">
+                    <div class="user-menu_header">
+                        <ul>
+                            <li><a href="#" class="user back"><span class="fa fa-long-arrow-left">close</span></a></li>
+                            <li><a href="user-profile-edit.html" class="user settings"><span
+                                    class="fa fa-cog">settings</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="user-menu_content">
+                       
+                        <ul class="user-menu_list">
+                         
+                        	<li><a href="user-profile-view.html"><i class="fa fa-user" aria-hidden="true"></i>Профиль</a></li>
+                        	<li><a href="friend-list.html"><i class="fa fa-users" aria-hidden="true"></i>Коллеги</a></li>
+                        	<li><a href="messages-list.html"><i class="fa fa-comments-o" aria-hidden="true"></i><i  id="msg">Сообщения</i></a></li>
+                            <li class="tuningsouz">TuningSouz</li>
+                            <li><a href="news-view.html"><i class="fa fa-newspaper-o" aria-hidden="true"></i>Новости</a></li>
+                            <li><a href="basket.html"><i class="fa fa-shopping-basket" aria-hidden="true"></i>Корзина</a></li>
+                            <li><a href="categories.html"><i class="fa fa-shopping-bag" aria-hidden="true"></i>Магазин</a></li>
+                            <li><a href="#" onclick="window.open('https://m.youtube.com/channel/UCLAZBCysrdf5qlzNZOCChNA', '_system');"><i class="fa fa-youtube-square" aria-hidden="true"></i>Видеоканал</a></li>
+                            <li><a href="support.html"><i class="fa fa-question-circle" aria-hidden="true"></i>Тех. поддержка</a></li>
+                            <li id="invite-menu-item"><a href="invite.html"><i class="fa fa-question-circle" aria-hidden="true"></i>Пригласить</a></li>
+                            <li id="vacancies-menu-item"><a href="vacancies.html"><i class="fa fa-briefcase" aria-hidden="true"></i>Вакансии</a></li>
+                            <!--<li><a href="vacancies-inner.html">Поиск услуг</a></li>-->
+                            <li><a href="event_request.html"><i class="fa fa-graduation-cap" aria-hidden="true"></i>Семинар</a></li>
+                            <li><a href="calendar.html"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>Календарь мероприятий</a></li>
+                            <li><a href="about-us.html"><i class="fa fa-diamond" aria-hidden="true"></i>О нас</a></li>
+                            
+                            <!--<li><a href="#" class="link logout"><span class="fa fa-sign-out"></span></a></li>-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="side center">
+<div class="support">
+    <div class="support-content">
+        <p class="support-title">Заявка на мероприятие</p>
+        <form name="support_form">
+            <input id="user_id" hidden value="0">
+            <div>
+                <label>Мероприятие:</label>
+                <select id="event-type">
+                    <option value="certification" default>Сертификация</option>
+                    <option value="learning">Обучение</option>
+                    <option value="webinar">Вебинар</option>
+                </select>
+            </div>
+            <div>
+                <label>Тема:</label>
+                <select id="event-theme">
+                    <option value="antigravel" default>Антигравийка</option>
+                    <option value="vinil">Цветной винил</option>
+                    <option value="tinting">Тонировка</option>
+                    <option value="detailing">Детейлинг</option>
+                    <option value="graphics">Тонировка</option>
+                </select>
+            </div>
+            <div>
+                <label>ФИО:</label>
+                <input name="username" id="user-name" placeholder="Имя Фамилия">
+            </div>
+            <div>
+                <label>Номер телефона:</label>
+                <input name="phone" id="user-phone" placeholder="Номер телефона">
+            </div>
+            <div>
+                <label>Email:</label>
+                <input name="email" id="user-email" placeholder="e-mail">
+            </div>
+            <div>
+                <label>Город:</label>
+                <input name="city" id="user-city" placeholder="Город">
+            </div>
+            <button type="button" onclick="loginCtrl.sendEventRequest()">Отправить</button>
+        </form>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<script src="js/jquery.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/widgets.js"></script>
+<script src="js/functions.js"></script>
+<script src="js/menu.js"></script>
+<script src="js/close-blocks.js"></script>
+<script src="js/app/user/userCtrl.js"></script>
+<script src="common/services/urlService.js"></script>
+<script src="common/services/requestService.js"></script>
+<script src="bower_components/handlebars/handlebars.min.js"></script>
+<script src="bower_components/moment/moment.js"></script>
+<script src="bower_components/moment/locale/ru.js"></script>
+</body>
+</html>

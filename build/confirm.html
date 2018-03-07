@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <title>TuningSouz</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <!--if IE script(src="http://html5shiv.googlecode.com/svn/trunk/html5.js")-->
+    <!--Media queries-->
+    <meta name="viewport" content="width=device-width, target-densitydpi=device-dpi, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!--CSS LINKS--><!--[if lte IE 8]>
+    <link rel="stylesheet" href="css/ie8.css" media="screen, projection"><![endif]-->
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="css/ie9.css" media="screen, projection"><![endif]-->
+    <!--Main style-->
+    <link href="css/widgets.css" rel="stylesheet" media="screen">
+    <link href="css/main.css" rel="stylesheet" media="screen">
+    <link href="css/menus.css" rel="stylesheet" media="screen">
+    <style>
+    </style>
+</head>
+<!--<body><?php include("php/handler.php");?>-->
+<!--&lt;!&ndash;<?php include("php/aut.php");?>&ndash;&gt;<?php include("php/reg.php");?>-->
+<!-- <body onload="loginCtrl.login_init()"> -->
+<body style=" -webkit-overflow-scrolling: touch;">
+<div class="wrapper welcome">
+    <div class="wrapper-inner">
+        <div class="welcome-holder"><span><!--логотип превью--></span></div>
+        <div class="login-holder" style="display:block;">
+            <div class="wrap-form login">
+			<div class="logo-regist">
+				<img src="img/logo_reg.png" alt="logo">
+        	</div>
+                <div class="container">
+                    <div class="wrap-form-inner"></div>
+                    <form action="#" name="login_form">
+                        <div class="form-title">
+                            <h2>Новый пароль</h2>
+                        </div>
+                        <div class="form-content">
+                            <div class="form-row">
+                                <label for="passw1">Введите новый пароль</label>
+                                <input type="password" name="passw1" id="password1">
+                            </div>
+                            <div class="form-row">
+                                <label for="passw2">Повторите новый пароль</label>
+                                <input type="password" name="passw2" id="password2">
+                            </div>
+                            <div class="form-row btn-row"><input type="button" value="Сохранить" class="btn login"
+                                                                 onclick="loginCtrl.newPassword()">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--SCRIPT LINKS-->
+<!--Jquery-->
+<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
+<!--UI-->
+
+<script src="js/jquery.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/widgets.js"></script>
+<script src="js/functions.js"></script>
+<script src="js/menu.js"></script>
+<script src="js/close-blocks.js"></script>
+<script src="js/app/user/userCtrl.js"></script>
+<script src="common/services/urlService.js"></script>
+<script src="common/services/requestService.js"></script>
+<script src="bower_components/handlebars/handlebars.min.js"></script>
+<script src="bower_components/moment/moment.js"></script>
+<script src="bower_components/moment/locale/ru.js"></script>
+</body>
+</html>
