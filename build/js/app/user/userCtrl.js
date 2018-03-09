@@ -1604,7 +1604,7 @@ var loginCtrl = {
         });
 
         var successCallback = function (result) {
-            console.log(result);
+            // console.log(result);
 
             //fx code
             var vac_city_arr = [];
@@ -1713,8 +1713,24 @@ var loginCtrl = {
             //document.getElementById( "vacancy_parent" ).innerHTML += html;
             $('#vacancy_parent').prepend(html);
 
-            // $('.vacancies-list li').addClass('customfx');
-            // console.log(vac_arr_global);
+            //fx code
+            $("select#vac-city-select").change(function(){
+                // console.log($(this).val());
+                $('.vacancies-list li[data-city!="'+ $(this).val() + '"]').css("display", "none");
+                $('.vacancies-list li[data-city="'+ $(this).val() + '"]').css("display", "list-item");
+                if($(this).val() == 'empty') {
+                    $('.vacancies-list li').css("display", "list-item");
+                }
+            });
+
+            $("select#vac-vacancy-select").change(function(){
+                // console.log($(this).val());
+                $('.vacancies-list li[data-vacancy!="'+ $(this).val() + '"]').css("display", "none");
+                $('.vacancies-list li[data-vacancy="'+ $(this).val() + '"]').css("display", "list-item");
+                if($(this).val() == 'empty') {
+                    $('.vacancies-list li').css("display", "list-item");
+                }
+            });
         }
     },
     selectedVacName: 0,
