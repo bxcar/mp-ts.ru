@@ -1,11 +1,12 @@
 /**
  * Created by Vista on 27.01.17.
  */
+var vac_arr_global = [];
 
-function Swipe( callback ) {
+function Swipe(callback) {
     var me = this;
-    var treshold = Math.floor( window.innerWidth / 3 );
-    var verticalDev = Math.floor( treshold/2 );
+    var treshold = Math.floor(window.innerWidth / 3);
+    var verticalDev = Math.floor(treshold / 2);
     this.x = 0;
     this.y = 0;
     this.timestamp = 0;
@@ -16,103 +17,102 @@ function Swipe( callback ) {
         me.x = evt.touches[0].clientX;
         me.y = evt.touches[0].clientY;
 
-        me.timestamp = Math.floor( Date.now() );
+        me.timestamp = Math.floor(Date.now());
     }, false);
-
 
 
     document.addEventListener('touchmove', function (evt) {
         var newX = evt.touches[0].clientX;
         var newY = evt.touches[0].clientY;
 
-        var distX = Math.abs( newX - me.x );
-        var distY = Math.abs( newY - me.y );
+        var distX = Math.abs(newX - me.x);
+        var distY = Math.abs(newY - me.y);
         var direction = newX > me.x;
 
 
-        if( distX > treshold && distY < verticalDev ) {
-            var ts = Math.floor( Date.now() );
+        if (distX > treshold && distY < verticalDev) {
+            var ts = Math.floor(Date.now());
 
-            if( (ts-me.timestamp) < 200 ) {
-                if( typeof( me.callback === 'function' ) ) {
+            if ((ts - me.timestamp) < 200) {
+                if (typeof( me.callback === 'function' )) {
                     me.x = me.y = me.timestamp = 0;
-                    console.log( 'Swipe' );
-                    me.callback( direction );
+                    console.log('Swipe');
+                    me.callback(direction);
                 }
             }
         }
     }, false);
 };
 
-        function Request() {
-            var _getRequest = function (endpoint, callback, options ) { //callback( err, data )
-                    var req = new XMLHttpRequest();
-                    var queryString ='';
+function Request() {
+    var _getRequest = function (endpoint, callback, options) { //callback( err, data )
+        var req = new XMLHttpRequest();
+        var queryString = '';
 
-                    if( options !== undefined ){
-                        var params = [];
-                        for( key in options ) {
-                            if( options.hasOwnProperty( key ) ) {
-                                params.push( encodeURIComponent( key ) + "=" + encodeURIComponent( options[key] ) );
-                            }
-                        }
-                        queryString = '?'+params.join( '&' );
-                    }
-
-                    req.open( 'GET', endpoint+queryString, true );
-
-                    req.onload = function () {
-                        if( req.readyState == 4 && req.status == 200 ) {
-                            callback( null, JSON.parse( req.responseText ) );
-                        } else {
-                            callback( JSON.parse( req.responseText ), null );
-                        }
-                    };
-
-                    req.onerror = function () {
-                        callback( {result:-1, message:'Network error'}, null );
-                    };
-
-                    req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-                    req.send();
-            };
-
-            var _postRequest = function (endpoint, callback, options ) {
-                    var req = new XMLHttpRequest();
-                    var params = new FormData();
-                    if( options !== undefined ) {
-                        for( key in options ) {
-                            if( options.hasOwnProperty( key ) ) {
-                                params.append( key, options[key]);
-                            }
-                        }
-                    }
-
-                    req.open( 'POST', endpoint, true );
-
-                    req.onload = function () {
-                        if( req.readyState == 4 && req.status == 200 )
-                            callback( null, JSON.parse( req.responseText ) );
-                        else
-                            callback( JSON.parse( req.responseText ), null );
-                    };
-
-                    req.onerror = function () {
-                        callback( {result:-1, message:'Network error'}, null );
-                    };
-
-//                    req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-                    req.send( params );
-            };
-
-            this.get = function ( endpoint, callback, options ) {
-                _getRequest( endpoint, callback, options );
+        if (options !== undefined) {
+            var params = [];
+            for (key in options) {
+                if (options.hasOwnProperty(key)) {
+                    params.push(encodeURIComponent(key) + "=" + encodeURIComponent(options[key]));
+                }
             }
+            queryString = '?' + params.join('&');
+        }
 
-            this.post = function ( endpoint, callback, options ) {
-                _postRequest( endpoint, callback, options );
+        req.open('GET', endpoint + queryString, true);
+
+        req.onload = function () {
+            if (req.readyState == 4 && req.status == 200) {
+                callback(null, JSON.parse(req.responseText));
+            } else {
+                callback(JSON.parse(req.responseText), null);
             }
         };
+
+        req.onerror = function () {
+            callback({result: -1, message: 'Network error'}, null);
+        };
+
+        req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        req.send();
+    };
+
+    var _postRequest = function (endpoint, callback, options) {
+        var req = new XMLHttpRequest();
+        var params = new FormData();
+        if (options !== undefined) {
+            for (key in options) {
+                if (options.hasOwnProperty(key)) {
+                    params.append(key, options[key]);
+                }
+            }
+        }
+
+        req.open('POST', endpoint, true);
+
+        req.onload = function () {
+            if (req.readyState == 4 && req.status == 200)
+                callback(null, JSON.parse(req.responseText));
+            else
+                callback(JSON.parse(req.responseText), null);
+        };
+
+        req.onerror = function () {
+            callback({result: -1, message: 'Network error'}, null);
+        };
+
+//                    req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        req.send(params);
+    };
+
+    this.get = function (endpoint, callback, options) {
+        _getRequest(endpoint, callback, options);
+    }
+
+    this.post = function (endpoint, callback, options) {
+        _postRequest(endpoint, callback, options);
+    }
+};
 
 var loginCtrl = {
     reg_data: '',
@@ -203,12 +203,12 @@ var loginCtrl = {
                             name: 'Типография',
                             value: false
                         },
-                        skill2:{
-                            name:  'Дизайнер',
+                        skill2: {
+                            name: 'Дизайнер',
                             value: false
                         },
-                        skill3:{
-                            name:  'Монтажник',
+                        skill3: {
+                            name: 'Монтажник',
                             value: false
                         }
                     }
@@ -227,149 +227,149 @@ var loginCtrl = {
     },
     swipe: null,
     previewAvatar: function (avatarFile, canvasName) {
-        console.log( 'previewing avatar' );
+        console.log('previewing avatar');
 
         var url = null;
 
         try {
-            url = (window.URL || window.webkitURL).createObjectURL( avatarFile );
-        } catch( err ) {
-            alert( "URL: "+err.message );
+            url = (window.URL || window.webkitURL).createObjectURL(avatarFile);
+        } catch (err) {
+            alert("URL: " + err.message);
         }
 
         var img = new Image();
         img.src = url;
 
-        var canvas = document.getElementById( canvasName );
-        var context = canvas.getContext( "2d" );
+        var canvas = document.getElementById(canvasName);
+        var context = canvas.getContext("2d");
         context.clearRect(0, 0, canvas.width, canvas.height);
 
-        img.onload = function() {
-                document.getElementById( 'user-avatar' ).style.display = 'none';
-                console.log( 'drawing in '+canvasName );
-                document.getElementById( canvasName ).style.display = 'block';
-                var new_x = 0;
-                var new_y = 0;
+        img.onload = function () {
+            document.getElementById('user-avatar').style.display = 'none';
+            console.log('drawing in ' + canvasName);
+            document.getElementById(canvasName).style.display = 'block';
+            var new_x = 0;
+            var new_y = 0;
 
-                img_width = img.width;
-                img_height = img.height;
+            img_width = img.width;
+            img_height = img.height;
 
-                console.log( img_width+':'+img_height )
+            console.log(img_width + ':' + img_height)
 
-                if (img_width > img_height) {
-                    new_x = (150*img_width)/img_height;
-                    new_y = 150;
-                    console.log( '1:'+new_x+':'+new_y );
-                }
+            if (img_width > img_height) {
+                new_x = (150 * img_width) / img_height;
+                new_y = 150;
+                console.log('1:' + new_x + ':' + new_y);
+            }
 
-                else if (img_height > img_width) {
-                    new_x = 150;
-                    new_y = (150*img_height)/img_width;
-                    console.log( '2:'+new_x+':'+new_y );
-                }
+            else if (img_height > img_width) {
+                new_x = 150;
+                new_y = (150 * img_height) / img_width;
+                console.log('2:' + new_x + ':' + new_y);
+            }
 
-                else {
-                    new_x = 150;
-                    new_y = 150;
-                    console.log( '3:'+new_x+':'+new_y );
-                }
+            else {
+                new_x = 150;
+                new_y = 150;
+                console.log('3:' + new_x + ':' + new_y);
+            }
 
-                context.arc( 75, 75, 75, 0, Math.PI * 2, true );
-                context.clip();
+            context.arc(75, 75, 75, 0, Math.PI * 2, true);
+            context.clip();
 
-                context.drawImage( img, 0, 0, new_x, new_y );
+            context.drawImage(img, 0, 0, new_x, new_y);
         }
     },
     previewImg: function (avatarFile, canvasName) {
         var url = null;
 
         try {
-            url = (window.URL || window.webkitURL).createObjectURL( avatarFile );
-        } catch( err ) {
-            alert( "URL: "+err.message );
+            url = (window.URL || window.webkitURL).createObjectURL(avatarFile);
+        } catch (err) {
+            alert("URL: " + err.message);
         }
 
         var img = new Image();
         img.src = url;
 
-        var canvas = document.getElementById( canvasName );
-        var context = canvas.getContext( "2d" );
+        var canvas = document.getElementById(canvasName);
+        var context = canvas.getContext("2d");
         context.clearRect(0, 0, canvas.width, canvas.height);
 
-        img.onload = function() {
-                var new_x = 0;
-                var new_y = 0;
+        img.onload = function () {
+            var new_x = 0;
+            var new_y = 0;
 
-                img_width = img.width;
-                img_height = img.height;
+            img_width = img.width;
+            img_height = img.height;
 
-                console.log( img_width+':'+img_height )
+            console.log(img_width + ':' + img_height)
 
-                if (img_width < img_height) {
-                    new_x = (150*img_width)/img_height;
-                    new_y = 150;
-                    console.log( '1:'+new_x+':'+new_y );
-                }
+            if (img_width < img_height) {
+                new_x = (150 * img_width) / img_height;
+                new_y = 150;
+                console.log('1:' + new_x + ':' + new_y);
+            }
 
-                else if (img_height < img_width) {
-                    new_x = 150;
-                    new_y = (150*img_height)/img_width;
-                    console.log( '2:'+new_x+':'+new_y );
-                }
+            else if (img_height < img_width) {
+                new_x = 150;
+                new_y = (150 * img_height) / img_width;
+                console.log('2:' + new_x + ':' + new_y);
+            }
 
-                else {
-                    new_x = 150;
-                    new_y = 150;
-                    console.log( '3:'+new_x+':'+new_y );
-                }
+            else {
+                new_x = 150;
+                new_y = 150;
+                console.log('3:' + new_x + ':' + new_y);
+            }
 
-                context.drawImage( img, 0, 0, new_x, new_y );
+            context.drawImage(img, 0, 0, new_x, new_y);
         }
     },
     initSwipeMenu: function () {
-        loginCtrl.swipe = new Swipe( loginCtrl.openMenu );
+        loginCtrl.swipe = new Swipe(loginCtrl.openMenu);
     },
-    openMenu: function ( right ) {
+    openMenu: function (right) {
         var leftMenuBtn = $('.menu-open.left'),
-        leftMenuHolder = $('.side.left'),
+            leftMenuHolder = $('.side.left'),
 
-        body = $('body'),
-        bodyClass = 'opened';
+            body = $('body'),
+            bodyClass = 'opened';
 
-        if( right ) {
-            body.addClass( bodyClass );
+        if (right) {
+            body.addClass(bodyClass);
 //            leftMenuBtn.toggleClass( 'active' );
-            leftMenuHolder.toggleClass( 'visible' );
+            leftMenuHolder.toggleClass('visible');
         } else {
             body.removeClass(bodyClass);
             leftMenuHolder.removeClass('visible');
 //            leftMenuBtn.removeClass('active');
         }
     },
-    displaySkills: function ( obj, prefix, level ) {
-        console.log( obj );
+    displaySkills: function (obj, prefix, level) {
+        console.log(obj);
 
-        if( prefix == undefined ) prefix = '';
-        if( level == undefined ) level = 0;
+        if (prefix == undefined) prefix = '';
+        if (level == undefined) level = 0;
         var txt = '';
 
-        if( prefix.length != 0 ) prefix += '.specs.';
+        if (prefix.length != 0) prefix += '.specs.';
 
-        for( var key in obj ) {
+        for (var key in obj) {
             console.log(key);
-            if(key == 'detailing'){
-              txt+='<input type="checkbox" name="'+prefix+key+'"'+(obj[key].value?' checked':'')+' value="'+obj[key].value+'" onchange="loginCtrl.skillChange(this)">Детейлинг<br/>\n';
-            }else{
-              txt+='<input type="checkbox" name="'+prefix+key+'"'+(obj[key].value?' checked':'')+' value="'+obj[key].value+'" onchange="loginCtrl.skillChange(this)">'+obj[key].name+'<br/>\n';
+            if (key == 'detailing') {
+                txt += '<input type="checkbox" name="' + prefix + key + '"' + (obj[key].value ? ' checked' : '') + ' value="' + obj[key].value + '" onchange="loginCtrl.skillChange(this)">Детейлинг<br/>\n';
+            } else {
+                txt += '<input type="checkbox" name="' + prefix + key + '"' + (obj[key].value ? ' checked' : '') + ' value="' + obj[key].value + '" onchange="loginCtrl.skillChange(this)">' + obj[key].name + '<br/>\n';
             }
-            if( obj[key].specs != null && typeof( obj[key].specs ) == 'object' ) {
-                var divName = prefix+key;
-                var divname = divName.replace( /\./g, '-' );
-                var divVisibility = obj[key].value?'block':'none';
-                txt += '<div id="'+divname+'" style="display:'+divVisibility+'" class="hierarchy-'+level+'">\n';
+            if (obj[key].specs != null && typeof( obj[key].specs ) == 'object') {
+                var divName = prefix + key;
+                var divname = divName.replace(/\./g, '-');
+                var divVisibility = obj[key].value ? 'block' : 'none';
+                txt += '<div id="' + divname + '" style="display:' + divVisibility + '" class="hierarchy-' + level + '">\n';
 
 //                for( var i in obj[key].specs ) {
-                    txt += loginCtrl.displaySkills( obj[key].specs, prefix+key, level+1 );
+                txt += loginCtrl.displaySkills(obj[key].specs, prefix + key, level + 1);
 //                }
 
                 txt += '</div>\n';
@@ -377,118 +377,118 @@ var loginCtrl = {
         }
         return txt;
     },
-    listSkills: function ( obj ) {
+    listSkills: function (obj) {
         var txt = '';
         var dlm = '';
 
-        for( var key in obj ) {
-            if(obj[key].value) {
-                txt+=obj[key].name;
+        for (var key in obj) {
+            if (obj[key].value) {
+                txt += obj[key].name;
                 dlm = ', ';
 
             } else {
-                txt+='';
+                txt += '';
                 dlm = '';
             }
-            if( obj[key].specs != null && typeof( obj[key].specs ) == 'object' ) {
-                var instxt = loginCtrl.listSkills( obj[key].specs );
-                if( instxt.length != 0 )
-                    txt += ' ('+instxt.trim()+')';
+            if (obj[key].specs != null && typeof( obj[key].specs ) == 'object') {
+                var instxt = loginCtrl.listSkills(obj[key].specs);
+                if (instxt.length != 0)
+                    txt += ' (' + instxt.trim() + ')';
             }
-            txt+=dlm;
+            txt += dlm;
         }
-        if( txt.length )
-            txt = txt.substr( 0, txt.length-2 );
+        if (txt.length)
+            txt = txt.substr(0, txt.length - 2);
         return txt;
     },
-    skillChange: function ( elem ) {
+    skillChange: function (elem) {
         var x = elem.name;
-        var div = document.getElementById( x.replace( /\./g, '-' ) );
-        if( elem.checked == true ) {
-            eval('loginCtrl.skills.master.specs.'+x+'.value=true');
-            if( div != undefined )
+        var div = document.getElementById(x.replace(/\./g, '-'));
+        if (elem.checked == true) {
+            eval('loginCtrl.skills.master.specs.' + x + '.value=true');
+            if (div != undefined)
                 div.style.display = 'block';
         } else {
-            eval('loginCtrl.skills.master.specs.'+x+'.value=false');
-            if( div != undefined )
+            eval('loginCtrl.skills.master.specs.' + x + '.value=false');
+            if (div != undefined)
                 div.style.display = 'none';
         }
     },
     serializeSkills: function () {
-        return JSON.stringify( loginCtrl.skills.master.specs );
+        return JSON.stringify(loginCtrl.skills.master.specs);
     },
     restorePassword: function () {
         var req = new Request();
-        var email = document.getElementById( 'email-input' ).value;
+        var email = document.getElementById('email-input').value;
 
-        console.log( email );
+        console.log(email);
 
-        req.get( urlService.password.restore, function( err, dta ) {
-            if( dta ) {
-                if( dta.result ) {
-                    alert( 'Ошибка восстановления пароля: '+dta.description );
+        req.get(urlService.password.restore, function (err, dta) {
+            if (dta) {
+                if (dta.result) {
+                    alert('Ошибка восстановления пароля: ' + dta.description);
                 } else {
-                    alert( 'Вам отправлено письмо со ссылкой на восстановление пароля' );
-                    window.location.assign( 'index.html' );
+                    alert('Вам отправлено письмо со ссылкой на восстановление пароля');
+                    window.location.assign('index.html');
                 }
             } else {
-                alert( 'Ошибка восстановления пароля: '+err );
-                console.log( 'Err:' );
-                console.log( err );
+                alert('Ошибка восстановления пароля: ' + err);
+                console.log('Err:');
+                console.log(err);
             }
-        }, {email:email} );
+        }, {email: email});
     },
     newPassword: function () {
-        var id = location.search.split( 'token=' )[1];
+        var id = location.search.split('token=')[1];
 
-        var passw1 = document.getElementById( 'password1' ).value.trim();
-        var passw2 = document.getElementById( 'password2' ).value.trim();
+        var passw1 = document.getElementById('password1').value.trim();
+        var passw2 = document.getElementById('password2').value.trim();
 
-        if( passw1 != passw2 ) {
-            alert( 'Пароли не совпадают' );
+        if (passw1 != passw2) {
+            alert('Пароли не совпадают');
             return;
         }
 
         var req = new Request();
 
-        req.get( urlService.api + urlService.user.new_passw, function( err, dta ) {
-            if( dta ) {
-                if( !dta.status ) {
-                    alert( 'Ошибка смены пароля: ' );
+        req.get(urlService.api + urlService.user.new_passw, function (err, dta) {
+            if (dta) {
+                if (!dta.status) {
+                    alert('Ошибка смены пароля: ');
                 } else {
-                    alert( 'Пароль успешно сменён.' );
-                    window.location.assign( 'index.html' );
+                    alert('Пароль успешно сменён.');
+                    window.location.assign('index.html');
                 }
             } else {
-                alert( 'Ошибка смены пароля: '+err.status );
-                console.log( 'Err:' );
-                console.log( err );
+                alert('Ошибка смены пароля: ' + err.status);
+                console.log('Err:');
+                console.log(err);
             }
-        }, {token:id, password: passw1} );
+        }, {token: id, password: passw1});
 
     },
-    followUser: function ( user ) {
-        console.log( "uid:"+user+" me:"+localStorage.user_id );
-        if( localStorage.user_id != null && localStorage.user_id !=='' ) {
-            var data = "user_id="+user+"&followed_by="+localStorage.user_id;
+    followUser: function (user) {
+        console.log("uid:" + user + " me:" + localStorage.user_id);
+        if (localStorage.user_id != null && localStorage.user_id !== '') {
+            var data = "user_id=" + user + "&followed_by=" + localStorage.user_id;
 
-            var onSuccess = function ( resp ) {
-                console.log( resp );
-                if( resp.status ) {
-                    console.log( "following ok" );
-                    alert( "Вы подписались на пользователя" );
+            var onSuccess = function (resp) {
+                console.log(resp);
+                if (resp.status) {
+                    console.log("following ok");
+                    alert("Вы подписались на пользователя");
                 } else {
-                    console.log( "following failed" );
-                    alert( "Ошибка подписки на пользователя" );
+                    console.log("following failed");
+                    alert("Ошибка подписки на пользователя");
                 }
             };
 
-            var onError = function ( err ) {
-                console.log( "following failed:"+err );
-                alert( "Вы уже подписаны на пользователя" );
+            var onError = function (err) {
+                console.log("following failed:" + err);
+                alert("Вы уже подписаны на пользователя");
             };
 
-            requestService.post( urlService.user.follow, data, onSuccess, onError );
+            requestService.post(urlService.user.follow, data, onSuccess, onError);
         }
     },
     login: function () {
@@ -510,11 +510,11 @@ var loginCtrl = {
                 localStorage.username = result.username;
                 localStorage.admin = result.admin;
 
-                console.log( 'adm:'+result.admin+'/'+localStorage.admin);
+                console.log('adm:' + result.admin + '/' + localStorage.admin);
                 window.location = 'user-profile-view.html?user=' + result.user_id;
             }
             else {
-                logger.write( 'Login failed:'+form.serialize()+'('+JSON.stringify(result)+')' );
+                logger.write('Login failed:' + form.serialize() + '(' + JSON.stringify(result) + ')');
                 alert('Вы ввели неверные данные! Повторите попытку снова!');
                 return false;
             }
@@ -524,32 +524,32 @@ var loginCtrl = {
         };
         requestService.post(urlService.user.login, form.serialize(), successCallback, errorCallback)
     },
-    validateRegistrationFields: function ( form ) {
+    validateRegistrationFields: function (form) {
         var txt = form.find('input[name="username"]').val();
 
-        if( txt.match(/^\s*[a-zA-Zа-яА-ЯёЁ]{2,40}(\s+[a-zA-Zа-яА-ЯёЁ]{2,40})+\s*$/) == null ) {
-            alert( "Введите свои фамилию и имя полностью" );
+        if (txt.match(/^\s*[a-zA-Zа-яА-ЯёЁ]{2,40}(\s+[a-zA-Zа-яА-ЯёЁ]{2,40})+\s*$/) == null) {
+            alert("Введите свои фамилию и имя полностью");
             return false;
         }
 
         txt = form.find('input[name="email"]').val();
 
-        if( txt.match(/([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/) == null ) {
-            alert( "Введите правильный адрес эл.почты" );
+        if (txt.match(/([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/) == null) {
+            alert("Введите правильный адрес эл.почты");
             return false;
         }
 
         txt = form.find('input[name="password"]').val();
 
-        if( txt.length < 6 ) {
-            alert( "Пароль должен быть 6 и более символов" );
+        if (txt.length < 6) {
+            alert("Пароль должен быть 6 и более символов");
             return false;
         }
 
         var txt2 = form.find('input[name="user_password2"]').val();
 
-        if( txt !== txt2 ) {
-            alert( "Пароли не совпадают" );
+        if (txt !== txt2) {
+            alert("Пароли не совпадают");
             return false;
         }
 
@@ -557,7 +557,7 @@ var loginCtrl = {
     },
     registration: function (form_name) {
         var form = $('form[name=reg_form]');
-        if( form_name == 'master' ) if( !loginCtrl.validateRegistrationFields( form ) ) return;
+        if (form_name == 'master') if (!loginCtrl.validateRegistrationFields(form)) return;
 
         var successCallback = function (result) {
             console.log(result);
@@ -565,12 +565,12 @@ var loginCtrl = {
                 alert('Пользователь успешно зарегистрирован');
                 $('.btn.login')[0].click();
             } else {
-                if( result.msg.username != null ) {
-                    alert( "Эти имя и фамилия пользователя уже используются" );
-                } else if( result.msg.email ) {
-                    alert( "Этот адрес эл.почты уже зарегистрирован" );
+                if (result.msg.username != null) {
+                    alert("Эти имя и фамилия пользователя уже используются");
+                } else if (result.msg.email) {
+                    alert("Этот адрес эл.почты уже зарегистрирован");
                 } else {
-                    alert( "Ошибка регистрации: "+JSON.stringify( result.msg ) );
+                    alert("Ошибка регистрации: " + JSON.stringify(result.msg));
                 }
             }
         };
@@ -586,22 +586,22 @@ var loginCtrl = {
             var additionalskillsArr = [];
             data.append('form_name', form_name);
             if (form_name == 'master') {
-/*                var skill_name = loginCtrl[form_name].skills[custom_formArr[0].value];
-                if (custom_formArr.length > 1) {
+                /*                var skill_name = loginCtrl[form_name].skills[custom_formArr[0].value];
+                 if (custom_formArr.length > 1) {
 
-                    for (var i = 1; i < custom_formArr.length; i++) {
-                        var obj = custom_formArr[i];
-                        var add_skill = loginCtrl[form_name][custom_formArr[0].value][obj.name];
-                        additionalskillsArr.push(add_skill);
-                    }
-                }
-                additionalskillsArr.push(skill_name);
-                data.append('additionalskill', JSON.stringify(additionalskillsArr));*/
-                data.append('additionalskill', loginCtrl.serializeSkills() );
+                 for (var i = 1; i < custom_formArr.length; i++) {
+                 var obj = custom_formArr[i];
+                 var add_skill = loginCtrl[form_name][custom_formArr[0].value][obj.name];
+                 additionalskillsArr.push(add_skill);
+                 }
+                 }
+                 additionalskillsArr.push(skill_name);
+                 data.append('additionalskill', JSON.stringify(additionalskillsArr));*/
+                data.append('additionalskill', loginCtrl.serializeSkills());
             }
             else if (form_name == 'provider') {
 
-                console.log( custom_formArr );
+                console.log(custom_formArr);
                 for (var i = 0; i < custom_formArr.length; i++) {
                     var obj = custom_formArr[i];
                     var add_skill = loginCtrl[form_name][obj.name];
@@ -618,10 +618,10 @@ var loginCtrl = {
                 data.append(form_data[i].name, form_data[i].value);
             }
 
-            if( custom_form.find('input[name=doc]')[0].files[0] != null )
+            if (custom_form.find('input[name=doc]')[0].files[0] != null)
                 data.append('doc', custom_form.find('input[name=doc]')[0].files[0]);
 
-            var txt='';
+            var txt = '';
 
 
 //            for( var pair of data.entries() ) {
@@ -629,101 +629,101 @@ var loginCtrl = {
 //                txt+=pair[0]+ ':' + pair[1]+', ';
 //            }
 
-            logger.write( 'Registration: '+txt );
+            logger.write('Registration: ' + txt);
 
             xhr = new XMLHttpRequest();
 
 
-            xhr.onreadystatechange = function() {
-                console.log( 'Got:'+xhr.readyState );
-                console.log( 'Status:'+xhr.status );
+            xhr.onreadystatechange = function () {
+                console.log('Got:' + xhr.readyState);
+                console.log('Status:' + xhr.status);
 
-                if( xhr.readyState == 4 )
-                    if( xhr.status == 200 ) {
-                        logger.write( 'RegResp: '+xhr.responseText );
-                        console.log( 'Got:'+xhr.responseText );
+                if (xhr.readyState == 4)
+                    if (xhr.status == 200) {
+                        logger.write('RegResp: ' + xhr.responseText);
+                        console.log('Got:' + xhr.responseText);
                         if (JSON.parse(xhr.responseText).status) {
                             alert('Данные успешно сохранены');
                             window.location = 'index.html';
                             return false;
                         }
                         else {
-                            alert('Произошла ошибка ('+xhr.status+'): '+xhr.responseText);
+                            alert('Произошла ошибка (' + xhr.status + '): ' + xhr.responseText);
                             return false;
                         }
                     } else {
-                        alert( 'Status:'+xhr.status+'('+xhr.readyState+')'+'\n'+xhr.responseText );
+                        alert('Status:' + xhr.status + '(' + xhr.readyState + ')' + '\n' + xhr.responseText);
                     }
 
 
             };
 
-            xhr.upload.onprogress = function(e) {
-                console.log( Math.round(e.loaded/e.total*100)+'%' );
+            xhr.upload.onprogress = function (e) {
+                console.log(Math.round(e.loaded / e.total * 100) + '%');
             }
 
             xhr.open('POST', urlService.api + urlService.user.sign_up, true);
-            xhr.send( data );
+            xhr.send(data);
 
-/*
-            xhr.open('POST', urlService.api + urlService.user.sign_up, true);
-            xhr.onreadystatechange = function (response) {
-                console.log(response);
-                if (xhr.readyState == XMLHttpRequest.DONE) {
-                    if (JSON.parse(xhr.responseText).status) {
-                        alert('Данные успешно сохранены');
-                        window.location = 'user-profile-view.html';
-                        return false;
-                    }
-                    else {
-                        // alert('Произошла ошибка');
-                        return false;
-                    }
-                }
+            /*
+             xhr.open('POST', urlService.api + urlService.user.sign_up, true);
+             xhr.onreadystatechange = function (response) {
+             console.log(response);
+             if (xhr.readyState == XMLHttpRequest.DONE) {
+             if (JSON.parse(xhr.responseText).status) {
+             alert('Данные успешно сохранены');
+             window.location = 'user-profile-view.html';
+             return false;
+             }
+             else {
+             // alert('Произошла ошибка');
+             return false;
+             }
+             }
 
-            };
+             };
 
-            xhr.send(data); */
+             xhr.send(data); */
         }
         else {
 //            requestService.post(urlService.user.sign_up, form.serialize(), successCallback, errorCallback)
             xhr = new XMLHttpRequest();
 
 
-            xhr.onreadystatechange = function() {
-                console.log( 'Got:'+xhr.readyState );
-                console.log( 'Status:'+xhr.status );
+            xhr.onreadystatechange = function () {
+                console.log('Got:' + xhr.readyState);
+                console.log('Status:' + xhr.status);
 
-                if( xhr.readyState == 4 )
-                    if( xhr.status == 200 ) {
-                        console.log( 'Got:'+xhr.responseText );
+                if (xhr.readyState == 4)
+                    if (xhr.status == 200) {
+                        console.log('Got:' + xhr.responseText);
                         if (JSON.parse(xhr.responseText).status) {
                             alert('Данные успешно сохранены');
                             window.location = 'index.html';
                             return false;
                         }
                         else {
-                            alert('Произошла ошибка ('+xhr.status+'): '+JSON.parse(xhr.responseText).msg);
+                            alert('Произошла ошибка (' + xhr.status + '): ' + JSON.parse(xhr.responseText).msg);
                             return false;
                         }
                     } else {
-                        alert( 'Status:'+xhr.status+'('+xhr.readyState+')'+'\n'+xhr.responseText );
+                        alert('Status:' + xhr.status + '(' + xhr.readyState + ')' + '\n' + xhr.responseText);
                     }
 
 
             };
 
-            xhr.upload.onprogress = function(e) {
-                console.log( Math.round(e.loaded/e.total*100)+'%' );
+            xhr.upload.onprogress = function (e) {
+                console.log(Math.round(e.loaded / e.total * 100) + '%');
             }
 
             xhr.open('POST', urlService.api + urlService.user.sign_up, true);
-            console.log( form.serialize() );
+            console.log(form.serialize());
             var data = new FormData();
             var form_data = form.serializeArray();
             for (var i in form_data)
                 data.append(form_data[i].name, form_data[i].value);
-            xhr.send( data );
+            xhr.send(data);
         }
     },
     next_step: function () {
@@ -741,12 +741,12 @@ var loginCtrl = {
             data.id = localStorage.user_id;
         }
 
-        if( data.id == localStorage.user_id )
+        if (data.id == localStorage.user_id)
             $('#comment-send-holder').html('');
 
         $('#file_entry').change(function (e) {
-            document.getElementById( 'img-preview' ).style.display = 'block';
-            loginCtrl.previewImg( e.target.files[0], 'file-preview' );
+            document.getElementById('img-preview').style.display = 'block';
+            loginCtrl.previewImg(e.target.files[0], 'file-preview');
         });
 
 
@@ -754,7 +754,7 @@ var loginCtrl = {
             console.log(result);
             var user = result.user;
             user.counts = result.counts;
-            if( user.avatar )
+            if (user.avatar)
                 user.avatar = "http://mp-ts.ru/api/web/img/" + user.avatar;
             if (user.id === parseInt(localStorage.user_id)) {
                 localStorage.user_avatar = user.avatar;
@@ -783,33 +783,33 @@ var loginCtrl = {
                     result.user.role_text = 'Компания';
                     break;
             }
-            if( result.user.role != 20 )
-                document.getElementById( 'vacancies-menu-item' ).style.display = 'none';
+            if (result.user.role != 20)
+                document.getElementById('vacancies-menu-item').style.display = 'none';
 
-            if( result.user.role == 10 || result.user.role == 30 )
-                document.getElementById( 'invite-menu-item' ).style.display = 'none';
+            if (result.user.role == 10 || result.user.role == 30)
+                document.getElementById('invite-menu-item').style.display = 'none';
 
             if ((result.user.role == 20 || result.user.role == 30) && (result.skills.length > 0)) {
                 loginCtrl.skills.master.specs = JSON.parse(result.skills[0].skills);
-/*                var new_skills = "";
-                for (var i in skills) {
-                    var obj = skills[i];
-                    if (obj !== null) {
-                        new_skills += obj + " ";
-                    }
-                } */
+                /*                var new_skills = "";
+                 for (var i in skills) {
+                 var obj = skills[i];
+                 if (obj !== null) {
+                 new_skills += obj + " ";
+                 }
+                 } */
             }
 //            user.skills = new_skills;
-            if( result.user.role == 20 )
-                user.skills = loginCtrl.listSkills( loginCtrl.skills.master.specs );
+            if (result.user.role == 20)
+                user.skills = loginCtrl.listSkills(loginCtrl.skills.master.specs);
             if (localStorage.user_id == user.id) {
                 localStorage.userdata = JSON.stringify(user);
-                if( result.user.role == 20 ) {
-                    console.log( result.skills, result.skills[0] );
-                    if( result.skills[0] )
+                if (result.user.role == 20) {
+                    console.log(result.skills, result.skills[0]);
+                    if (result.skills[0])
                         localStorage.skills = result.skills[0].skills;
                     else
-                        localStorage.skills =  JSON.stringify( loginCtrl.skills.master.specs );
+                        localStorage.skills = JSON.stringify(loginCtrl.skills.master.specs);
                 }
             }
 
@@ -831,12 +831,12 @@ var loginCtrl = {
         };
 
         var getEventsSucceed = function (result) {
-            console.log( 'events' );
+            console.log('events');
             console.log(result);
             var newEvents = result[0].eventcount;
-            console.log( "New events:"+newEvents );
-            if( newEvents > 0 )
-                $('#events-count').text('(+'+newEvents+')');
+            console.log("New events:" + newEvents);
+            if (newEvents > 0)
+                $('#events-count').text('(+' + newEvents + ')');
         };
 
         var getEventsFailed = function (result) {
@@ -844,7 +844,7 @@ var loginCtrl = {
         };
 
         requestService.get(urlService.user.profile, data, successCallback, errorCallback);
-        requestService.get(urlService.event.count, {id:data.id}, getEventsSucceed, getEventsFailed);
+        requestService.get(urlService.event.count, {id: data.id}, getEventsSucceed, getEventsFailed);
     },
     profile_edit: function () {
         loginCtrl.initSwipeMenu();
@@ -859,9 +859,9 @@ var loginCtrl = {
             data.id = localStorage.user_id;
         }
 
-        console.log( data.id+'/'+localStorage.user_id )
+        console.log(data.id + '/' + localStorage.user_id)
 
-        if( data.id == localStorage.user_id )
+        if (data.id == localStorage.user_id)
             $('#comment-send-holder').html('');
 
         $('.top-user-image img').attr('src', localStorage.user_avatar);
@@ -872,31 +872,31 @@ var loginCtrl = {
         var template = Handlebars.compile(source);
         var html = template(JSON.parse(localStorage.userdata));
         $("#user-about-edit-parent").append(html);
-        if( localStorage.user_avatar ) {
+        if (localStorage.user_avatar) {
             $('#blah').attr('src', localStorage.user_avatar);
             $('#blah1').attr('href', localStorage.user_avatar);
         }
-        console.log( localStorage.user_avatar );
-        if( localStorage.user_avatar == 'null' )
+        console.log(localStorage.user_avatar);
+        if (localStorage.user_avatar == 'null')
             $('#blah1').remove();
 
         var ud = JSON.parse(localStorage.userdata);
 
         var txt = '';
-        if( ud.role == 20 ) {
-            loginCtrl.skills.master.specs = JSON.parse( localStorage.skills );
-            txt = loginCtrl.displaySkills( loginCtrl.skills.master.specs );
+        if (ud.role == 20) {
+            loginCtrl.skills.master.specs = JSON.parse(localStorage.skills);
+            txt = loginCtrl.displaySkills(loginCtrl.skills.master.specs);
         }
 
 
-        document.getElementById( 'profile-edit-skills' ).innerHTML = txt;
+        document.getElementById('profile-edit-skills').innerHTML = txt;
 
 
         function readURL(input) {
 
             if (input.files && input.files[0]) {
                 loginCtrl.inputFile = input.files[0];
-                loginCtrl.previewAvatar( input.files[0], 'avatar-preview' );
+                loginCtrl.previewAvatar(input.files[0], 'avatar-preview');
 //                var reader = new FileReader();
 
 //                reader.onload = function (e) {
@@ -913,28 +913,28 @@ var loginCtrl = {
             readURL(this);
         });
         $("#file_gallery").change(function (e) {
-            loginCtrl.previewImg( e.target.files[0], 'file-preview' );
+            loginCtrl.previewImg(e.target.files[0], 'file-preview');
         });
     },
     save_profile: function () {
         var form = $('form[name=user-edit-form]');
 
         var txt = form.find($('input[name="username"]')).val();
-        if( txt.match(/^\s*[a-zA-Zа-яА-ЯёЁ]{2,40}(\s+[a-zA-Zа-яА-ЯёЁ]{2,40})+\s*$/) == null ) {
-            alert( "Введите свои фамилию и имя полностью" );
+        if (txt.match(/^\s*[a-zA-Zа-яА-ЯёЁ]{2,40}(\s+[a-zA-Zа-яА-ЯёЁ]{2,40})+\s*$/) == null) {
+            alert("Введите свои фамилию и имя полностью");
             return false;
         }
         txt = form.find('input[name="email"]').val();
-        if( txt.match(/([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/) == null ) {
-            alert( "Введите правильно адрес эл.почты" );
+        if (txt.match(/([\w-\.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/) == null) {
+            alert("Введите правильно адрес эл.почты");
             return false;
         }
 
         var fd = new FormData();
         var file = document.getElementById('file');
-        if( loginCtrl.inputFile != null )
+        if (loginCtrl.inputFile != null)
 //            fd.append('avatar', loginCtrl.inputFile );
-            fd.append('avatar', file.files[0] );
+            fd.append('avatar', file.files[0]);
 
         fd.append('username', form.find($('input[name="username"]')).val());
         fd.append('city', form.find($('input[name="city"]')).val());
@@ -949,43 +949,41 @@ var loginCtrl = {
 
         var txt = '';
 
-/*        for( var pair of fd.entries() ) {
-            console.log(pair[0]+ ':' + pair[1]);
-            txt+=pair[0]+ ':' + pair[1]+'; ';
-        }
-*/
-        logger.write( 'User:'+localStorage.username+'. ProfUpd:'+txt );
+        /*        for( var pair of fd.entries() ) {
+         console.log(pair[0]+ ':' + pair[1]);
+         txt+=pair[0]+ ':' + pair[1]+'; ';
+         }
+         */
+        logger.write('User:' + localStorage.username + '. ProfUpd:' + txt);
 
         xhr = new XMLHttpRequest();
 
-        xhr.onreadystatechange = function() {
+        xhr.onreadystatechange = function () {
 //            console.log( 'Got:'+xhr.readyState );
 //            console.log( 'Status:'+xhr.status );
 //            console.log( 'Got_:'+xhr.responseText );
-            if( xhr.readyState == 4 )
-                if( xhr.status == 200 ) {
-                    logger.write( 'User:'+localStorage.username+' profile update:'+xhr.responseText );
+            if (xhr.readyState == 4)
+                if (xhr.status == 200) {
+                    logger.write('User:' + localStorage.username + ' profile update:' + xhr.responseText);
                     if (JSON.parse(xhr.responseText).status) {
                         alert('Данные успешно сохранены');
                         window.location = 'user-profile-view.html';
                         return false;
                     }
                     else {
-                        alert('Произошла ошибка ('+xhr.status+'): '+JSON.parse(xhr.responseText).msg );
+                        alert('Произошла ошибка (' + xhr.status + '): ' + JSON.parse(xhr.responseText).msg);
                         return false;
                     }
                 } else {
-                    alert( 'Status:'+xhr.status+'('+xhr.readyState+')'+'\n'+xhr.responseText );
+                    alert('Status:' + xhr.status + '(' + xhr.readyState + ')' + '\n' + xhr.responseText);
                 }
-
 
 
         };
 
-        xhr.upload.onprogress = function(e) {
-            console.log( Math.round(e.loaded/e.total*100)+'%' );
+        xhr.upload.onprogress = function (e) {
+            console.log(Math.round(e.loaded / e.total * 100) + '%');
         }
-
 
 
         xhr.open('POST', urlService.api + urlService.user.profile_update, true);
@@ -1005,29 +1003,29 @@ var loginCtrl = {
         }
         fd.append('getter_id', user_id);
         fd.append('sender_id', localStorage.user_id);
-        fd.append('type', 1 );
+        fd.append('type', 1);
 
 //        for (var pair of fd.entries()) {
 //            console.log(pair[0]+ ', ' + pair[1]);
 //        }
 
-console.log( 'send msg' );
+        console.log('send msg');
 
         xhr = new XMLHttpRequest();
 
         xhr.open('POST', urlService.api + urlService.entry.add, true);
         xhr.onreadystatechange = function () {
-            console.log( xhr.responseText );
-            if( xhr.readyState == 4 )
-                if( xhr.status == 200 ){
+            console.log(xhr.responseText);
+            if (xhr.readyState == 4)
+                if (xhr.status == 200) {
                     if (JSON.parse(xhr.responseText).status) {
                         // alert('Данные успешно сохранены');
                         // window.location.reload();
                         form.find($('textarea[name="text"]')).val('');
-                        document.getElementById( 'img-preview' ).style.display = 'none';
+                        document.getElementById('img-preview').style.display = 'none';
                         loginCtrl.getEntries();
                     } else {
-                        alert('Произошла ошибка ('+xhr.status+'): '+JSON.parse(xhr.responseText).msg);
+                        alert('Произошла ошибка (' + xhr.status + '): ' + JSON.parse(xhr.responseText).msg);
                         return false;
                     }
                 }
@@ -1048,12 +1046,12 @@ console.log( 'send msg' );
         }
         fd.append('getter_id', user_id);
         fd.append('sender_id', localStorage.user_id);
-        fd.append( 'type', 0 );
+        fd.append('type', 0);
 
-/*        for (var pair of fd.entries()) {
-            console.log(pair[0]+ ', ' + pair[1]);
-        }
-*/
+        /*        for (var pair of fd.entries()) {
+         console.log(pair[0]+ ', ' + pair[1]);
+         }
+         */
 
         xhr = new XMLHttpRequest();
 
@@ -1061,14 +1059,14 @@ console.log( 'send msg' );
         xhr.onreadystatechange = function () {
             console.log(xhr.responseText);
 //            if (xhr.readyState == XMLHttpRequest.DONE) {
-            if( xhr.readyState == 4 )
-                if( xhr.status == 200 ){
+            if (xhr.readyState == 4)
+                if (xhr.status == 200) {
                     if (JSON.parse(xhr.responseText).status) {
                         // alert('Данные успешно сохранены');
                         // window.location.reload();
                         form.find($('textarea[name="text"]')).val('');
                         $("#post-item-parent").html("");
-                        document.getElementById( 'img-preview' ).style.display = 'none';
+                        document.getElementById('img-preview').style.display = 'none';
                         loginCtrl.news();
                     }
                     else {
@@ -1112,7 +1110,7 @@ console.log( 'send msg' );
                     obj.attachment = "http://mp-ts.ru/api/web/img/" + obj.attachment;
                 }
                 obj.comment_avatar = localStorage.user_avatar;
-                obj.user_sender_id=localStorage.user_id;
+                obj.user_sender_id = localStorage.user_id;
                 var a = moment(obj.create_date * 1000);
                 obj.create_date = a.fromNow();
                 obj.comments_count = obj.comments.length;
@@ -1121,16 +1119,16 @@ console.log( 'send msg' );
                 var html = template(obj);
                 $("#post-item-parent").append(html);
 
-                loginCtrl.fillComments( i );
+                loginCtrl.fillComments(i);
 
-/*                for (var j in obj.comments) {
-                    var comment_obj = obj.comments[j];
-                    var source = $("#comment_template").html();
-                    var template = Handlebars.compile(source);
-                    comment_obj.avatar = "http://mp-ts.ru/api/web/img/" + comment_obj.avatar;
-                    var html = template(comment_obj);
-                    $("#comment_parent_template-" + obj.id).append(html);
-                } */
+                /*                for (var j in obj.comments) {
+                 var comment_obj = obj.comments[j];
+                 var source = $("#comment_template").html();
+                 var template = Handlebars.compile(source);
+                 comment_obj.avatar = "http://mp-ts.ru/api/web/img/" + comment_obj.avatar;
+                 var html = template(comment_obj);
+                 $("#comment_parent_template-" + obj.id).append(html);
+                 } */
             }
             ss();
 
@@ -1146,14 +1144,14 @@ console.log( 'send msg' );
         var successCallback = function (result) {
             console.log(result);
             if (result.status) {
-                window.location.assign( 'news-view.html' );
+                window.location.assign('news-view.html');
 //                loginCtrl.getEntries();
             }
         };
         var errorCallback = function (result) {
             console.log(result);
         };
-        console.log( form.serialize() );
+        console.log(form.serialize());
         requestService.post(urlService.comment.add, form.serialize(), successCallback, errorCallback)
 
     },
@@ -1169,33 +1167,33 @@ console.log( 'send msg' );
         var errorCallback = function (result) {
             console.log(result);
         };
-        console.log( form.serialize() );
+        console.log(form.serialize());
         requestService.post(urlService.comment.add, form.serialize(), successCallback, errorCallback)
 
     },
     friend_list: function (search) {
         loginCtrl.initSwipeMenu();
 
-        var role = JSON.parse( localStorage.userdata ).role;
-        if( role != 20 )
-            document.getElementById( 'vacancies-menu-item' ).style.display = 'none';
+        var role = JSON.parse(localStorage.userdata).role;
+        if (role != 20)
+            document.getElementById('vacancies-menu-item').style.display = 'none';
 
-            if( role == 10 || role == 30 )
-                document.getElementById( 'invite-menu-item' ).style.display = 'none';
+        if (role == 10 || role == 30)
+            document.getElementById('invite-menu-item').style.display = 'none';
 
 
-        if( loginCtrl.userList ) $("#friend-list-parent-"+loginCtrl.userList).empty();
+        if (loginCtrl.userList) $("#friend-list-parent-" + loginCtrl.userList).empty();
         if (typeof search !== 'undefined') {
             for (var i in loginCtrl.friends) {
                 var obj = loginCtrl.friends[i];
 
                 if (obj.username.indexOf($('p input[name=q]').val()) !== -1) {
 
-                        obj.avatar = "http://mp-ts.ru/api/web/img/" + obj.avatar;
-                        var source = $("#friend-list-item-template").html();
-                        var template = Handlebars.compile(source);
-                        var html = template(obj);
-                        $("#friend-list-parent-"+loginCtrl.userList).append(html);
+                    obj.avatar = "http://mp-ts.ru/api/web/img/" + obj.avatar;
+                    var source = $("#friend-list-item-template").html();
+                    var template = Handlebars.compile(source);
+                    var html = template(obj);
+                    $("#friend-list-parent-" + loginCtrl.userList).append(html);
                 }
             }
             return false;
@@ -1230,34 +1228,35 @@ console.log( 'send msg' );
                 var template = Handlebars.compile(source);
                 var html = template(obj);
 
-                if( obj.followed == 2 )
+                if (obj.followed == 2)
                     $("#friend-list-parent-followed").append(html);
 
-                if( obj.followed == 1 )
+                if (obj.followed == 1)
                     $("#friend-list-parent-followers").append(html);
 
-                switch( obj.role.toUpperCase() ) {
+                switch (obj.role.toUpperCase()) {
                     case 'КОМПАНИЯ':
-                        console.log( obj );
+                        console.log(obj);
                         $("#friend-list-parent-company").append(html);
                         break;
                     case 'МАСТЕР':
-                        console.log( obj );
+                        console.log(obj);
                         $("#friend-list-parent-master").append(html);
                         break;
                     case 'ПОСТАВЩИК':
-                        console.log( obj );
+                        console.log(obj);
                         $("#friend-list-parent-vendor").append(html);
                         break;
                     default:
-                        console.log( obj );
+                        console.log(obj);
                         $("#friend-list-parent-guest").append(html);
                         break;
-                };
+                }
+                ;
             }
 //            $("#friend-list-parent-guest").show();
 //            $("#friend-list-menu-guest").css("border-bottom", "2px solid #fff");
-            loginCtrl.selectFriendList( 'guest' );
+            loginCtrl.selectFriendList('guest');
             friendInfo();
         };
         var errorCallback = function (result) {
@@ -1275,16 +1274,65 @@ console.log( 'send msg' );
         $("#friend-list-parent-guest").hide();
         $("#friend-list-parent-followed").hide();
         $("#friend-list-parent-followers").hide();
-        $("#friend-list-parent-"+ul).show();
+        $("#friend-list-parent-" + ul).show();
 
-        $("#friend-list-menu-company").css({'background': 'none', 'border-radius': '13px', 'padding': '5px', 'color': '#fff', 'font-weight': '100', 'line-height': '4'});
-        $("#friend-list-menu-master").css({'background': 'none', 'border-radius': '13px', 'padding': '5px', 'color': '#fff', 'font-weight': '100', 'line-height': '4'});
-        $("#friend-list-menu-vendor").css({'background': 'none', 'border-radius': '13px', 'padding': '5px', 'color': '#fff', 'font-weight': '100', 'line-height': '4'});
-        $("#friend-list-menu-guest").css({'background': 'none', 'border-radius': '13px', 'padding': '5px', 'color': '#fff', 'font-weight': '100', 'line-height': '4'});
-        $("#friend-list-menu-followed").css({'background': 'none', 'border-radius': '13px', 'padding': '5px', 'color': '#fff', 'font-weight': '100', 'line-height': '4'});
-        $("#friend-list-menu-followers").css({'background': 'none', 'border-radius': '13px', 'padding': '5px', 'color': '#fff', 'font-weight': '100', 'line-height': '4'});
+        $("#friend-list-menu-company").css({
+            'background': 'none',
+            'border-radius': '13px',
+            'padding': '5px',
+            'color': '#fff',
+            'font-weight': '100',
+            'line-height': '4'
+        });
+        $("#friend-list-menu-master").css({
+            'background': 'none',
+            'border-radius': '13px',
+            'padding': '5px',
+            'color': '#fff',
+            'font-weight': '100',
+            'line-height': '4'
+        });
+        $("#friend-list-menu-vendor").css({
+            'background': 'none',
+            'border-radius': '13px',
+            'padding': '5px',
+            'color': '#fff',
+            'font-weight': '100',
+            'line-height': '4'
+        });
+        $("#friend-list-menu-guest").css({
+            'background': 'none',
+            'border-radius': '13px',
+            'padding': '5px',
+            'color': '#fff',
+            'font-weight': '100',
+            'line-height': '4'
+        });
+        $("#friend-list-menu-followed").css({
+            'background': 'none',
+            'border-radius': '13px',
+            'padding': '5px',
+            'color': '#fff',
+            'font-weight': '100',
+            'line-height': '4'
+        });
+        $("#friend-list-menu-followers").css({
+            'background': 'none',
+            'border-radius': '13px',
+            'padding': '5px',
+            'color': '#fff',
+            'font-weight': '100',
+            'line-height': '4'
+        });
 
-        $("#friend-list-menu-"+ul).css({'background-color': '#eee', 'border-radius': '13px', 'padding': '5px', 'color': '#000', 'font-weight': '600', 'line-height': '4'});
+        $("#friend-list-menu-" + ul).css({
+            'background-color': '#eee',
+            'border-radius': '13px',
+            'padding': '5px',
+            'color': '#000',
+            'font-weight': '600',
+            'line-height': '4'
+        });
     },
     friend_one: function () {
         $('.top-user-image img').attr('src', localStorage.user_avatar);
@@ -1392,20 +1440,20 @@ console.log( 'send msg' );
                 xhr.onreadystatechange = function () {
                     console.log(xhr.responseText);
 //                    if (xhr.readyState == XMLHttpRequest.DONE) {
-                if( xhr.readyState == 4 )
-                    if( xhr.status == 200 ){
-                        if (JSON.parse(xhr.responseText).status) {
-                            // alert('Данные успешно сохранены');
-                            // window.location.reload();
-                            loginCtrl.dialog_single();
-                            $('#msg-area').val('');
-                            document.getElementById( 'file-preview' ).style.display = 'none';
+                    if (xhr.readyState == 4)
+                        if (xhr.status == 200) {
+                            if (JSON.parse(xhr.responseText).status) {
+                                // alert('Данные успешно сохранены');
+                                // window.location.reload();
+                                loginCtrl.dialog_single();
+                                $('#msg-area').val('');
+                                document.getElementById('file-preview').style.display = 'none';
+                            }
+                            else {
+                                // alert('Произошла ошибка');
+                                return false;
+                            }
                         }
-                        else {
-                            // alert('Произошла ошибка');
-                            return false;
-                        }
-                    }
 
                 };
 
@@ -1430,12 +1478,12 @@ console.log( 'send msg' );
     dialog_load: function () {
         loginCtrl.initSwipeMenu();
 
-        var role = JSON.parse( localStorage.userdata ).role;
-        if( role != 20 )
-            document.getElementById( 'vacancies-menu-item' ).style.display = 'none';
+        var role = JSON.parse(localStorage.userdata).role;
+        if (role != 20)
+            document.getElementById('vacancies-menu-item').style.display = 'none';
 
-            if( role == 10 || role == 30 )
-                document.getElementById( 'invite-menu-item' ).style.display = 'none';
+        if (role == 10 || role == 30)
+            document.getElementById('invite-menu-item').style.display = 'none';
 
         $("#message-parent").empty();
         var data = {
@@ -1471,8 +1519,8 @@ console.log( 'send msg' );
     },
     dialog_single: function () {
         $("#file").change(function (e) {
-            loginCtrl.previewImg( e.target.files[0], 'file-preview' );
-            document.getElementById( 'file-preview' ).style.display = 'block';
+            loginCtrl.previewImg(e.target.files[0], 'file-preview');
+            document.getElementById('file-preview').style.display = 'block';
         });
 
 
@@ -1517,14 +1565,14 @@ console.log( 'send msg' );
     login_init: function () {
         console.info('login init');
 
-        var txt = loginCtrl.displaySkills( loginCtrl.skills.master.specs );
+        var txt = loginCtrl.displaySkills(loginCtrl.skills.master.specs);
 
 //        console.log( txt );
 
-        document.getElementById( 'skill-selector' ).innerHTML = txt;
+        document.getElementById('skill-selector').innerHTML = txt;
 
         $("#passport").change(function (e) {
-            loginCtrl.previewImg( e.target.files[0], 'file-preview' );
+            loginCtrl.previewImg(e.target.files[0], 'file-preview');
         });
 
 
@@ -1539,24 +1587,59 @@ console.log( 'send msg' );
     vacancy_index: function () {
         loginCtrl.initSwipeMenu();
 
-        var role = JSON.parse( localStorage.userdata ).role;
-        if( role != 20 )
-            document.getElementById( 'vacancies-menu-item' ).style.display = 'none';
+        var role = JSON.parse(localStorage.userdata).role;
+        if (role != 20)
+            document.getElementById('vacancies-menu-item').style.display = 'none';
 
-            if( role == 10 || role == 30 )
-                document.getElementById( 'invite-menu-item' ).style.display = 'none';
+        if (role == 10 || role == 30)
+            document.getElementById('invite-menu-item').style.display = 'none';
 
         $('.top-user-image img').attr('src', localStorage.user_avatar);
         $('.photo-wrap_inner img').attr('src', localStorage.user_avatar);
         $('#name_surname_menu').text(localStorage.username);
 
         $('#file_vacancy').change(function (e) {
-            console.log( 'Vac img add' );
-            loginCtrl.previewAvatar( e.target.files[0], 'avatar-preview' );
+            console.log('Vac img add');
+            loginCtrl.previewAvatar(e.target.files[0], 'avatar-preview');
         });
 
         var successCallback = function (result) {
             console.log(result);
+
+            //fx code
+            var vac_city_arr = [];
+            var vac_vacancy_arr = [];
+            $.each(result, function(index, value) {
+                vac_city_arr[index] = value.city;
+                vac_vacancy_arr[index] = value.name;
+            });
+
+            var unique_vac_city_arr = [];
+            $.each(vac_city_arr, function(i, el){
+                if($.inArray(el, unique_vac_city_arr) === -1) unique_vac_city_arr.push(el);
+            });
+
+            var unique_vac_vacancy_arr = [];
+            $.each(vac_vacancy_arr, function(i, el){
+                if($.inArray(el, unique_vac_vacancy_arr) === -1) unique_vac_vacancy_arr.push(el);
+            });
+
+            // console.log(unique_vac_arr);
+
+            $.each(unique_vac_city_arr, function(key, value) {
+                $('#vac-city-select')
+                    .append($("<option></option>")
+                        .attr("value",value)
+                        .text(value));
+            });
+
+            $.each(unique_vac_vacancy_arr, function(key, value) {
+                $('#vac-vacancy-select')
+                    .append($("<option></option>")
+                        .attr("value",value)
+                        .text(value));
+            });
+
 
             var names = {};
             var cities = {};
@@ -1576,11 +1659,19 @@ console.log( 'send msg' );
             loginCtrl.vacancy_draw();
 
 
-            var nameArray = Object.keys( names ).map( function(v) { return names[v];} ).sort( function(a,b) {return a.toLowerCase().localeCompare(b.toLowerCase());} );
-            var cityArray = Object.keys( cities ).map( function(v) { return cities[v];} ).sort( function(a,b) {return a.toLowerCase().localeCompare(b.toLowerCase());} );
+            var nameArray = Object.keys(names).map(function (v) {
+                return names[v];
+            }).sort(function (a, b) {
+                return a.toLowerCase().localeCompare(b.toLowerCase());
+            });
+            var cityArray = Object.keys(cities).map(function (v) {
+                return cities[v];
+            }).sort(function (a, b) {
+                return a.toLowerCase().localeCompare(b.toLowerCase());
+            });
 
             var citySelect = document.getElementById('city-selector');
-            for (var i = 0; i < cityArray.length; i++){
+            for (var i = 0; i < cityArray.length; i++) {
                 var opt = document.createElement('option');
                 opt.value = cityArray[i];
                 opt.innerHTML = cityArray[i];
@@ -1588,7 +1679,7 @@ console.log( 'send msg' );
             }
 
             var nameSelect = document.getElementById('name-selector');
-            for (var i = 0; i < nameArray.length; i++){
+            for (var i = 0; i < nameArray.length; i++) {
                 var opt = document.createElement('option');
                 opt.value = nameArray[i];
                 opt.innerHTML = nameArray[i];
@@ -1596,8 +1687,8 @@ console.log( 'send msg' );
             }
 
 
-            console.log( nameArray );
-            console.log( cityArray );
+            console.log(nameArray);
+            console.log(cityArray);
         };
         var errorCallback = function (result) {
             console.log(result);
@@ -1606,14 +1697,14 @@ console.log( 'send msg' );
 
     },
     vacancies: [],
-    vacancy_draw: function() {
-        document.getElementById( "vacancy_parent" ).innerHTML = "";
+    vacancy_draw: function () {
+        document.getElementById("vacancy_parent").innerHTML = "";
         $('#vacancy_parent').html('');
 
-        for (var i in loginCtrl.vacancies ) {
+        for (var i in loginCtrl.vacancies) {
             var obj = loginCtrl.vacancies[i];
-            if( loginCtrl.selectedVacCity != 0 && loginCtrl.selectedVacCity != obj.city ) continue;
-            if( loginCtrl.selectedVacName != 0 && loginCtrl.selectedVacName != obj.name ) continue;
+            if (loginCtrl.selectedVacCity != 0 && loginCtrl.selectedVacCity != obj.city) continue;
+            if (loginCtrl.selectedVacName != 0 && loginCtrl.selectedVacName != obj.name) continue;
             obj.img = "http://mp-ts.ru/api/web/img/" + obj.image;
             var source = $("#vacancy_item_template").html();
             var template = Handlebars.compile(source);
@@ -1622,6 +1713,8 @@ console.log( 'send msg' );
             //document.getElementById( "vacancy_parent" ).innerHTML += html;
             $('#vacancy_parent').prepend(html);
 
+            // $('.vacancies-list li').addClass('customfx');
+            // console.log(vac_arr_global);
         }
     },
     selectedVacName: 0,
@@ -1648,7 +1741,7 @@ console.log( 'send msg' );
             fd.append(obj.name, obj.value);
         }
 
-        console.log( "Saving vacancy" );
+        console.log("Saving vacancy");
 
         xhr = new XMLHttpRequest();
 
@@ -1662,7 +1755,7 @@ console.log( 'send msg' );
                     console.log('success');
                 }
                 else {
-                    alert('Произошла ошибка: '+JSON.parse(xhr.responseText).msg);
+                    alert('Произошла ошибка: ' + JSON.parse(xhr.responseText).msg);
                     return false;
                 }
             }
@@ -1692,26 +1785,26 @@ console.log( 'send msg' );
         requestService.get(urlService.vacancy.one, data, successCallback, errorCallback)
 
     },
-    redrawComments: function( i ) {
-        loginCtrl.fillComments( i );
-        if( loginCtrl.newsData[i].comments.length > 3 ) {
-            if( loginCtrl.newsData[i].all )
-                $("#expand-comments-"+i).html('Развернуть');
+    redrawComments: function (i) {
+        loginCtrl.fillComments(i);
+        if (loginCtrl.newsData[i].comments.length > 3) {
+            if (loginCtrl.newsData[i].all)
+                $("#expand-comments-" + i).html('Развернуть');
             else
-                $("#expand-comments-"+i).html('Свернуть');
+                $("#expand-comments-" + i).html('Свернуть');
         }
     },
-    fillComments: function( i ) {
+    fillComments: function (i) {
         var obj = loginCtrl.newsData[i];
         var count = 0;
         $("#comment_parent_template-" + obj.id).html('');
 
-        if( obj.comments.length > 3 )
-            $("#expand-comments-"+i).html('Развернуть');
+        if (obj.comments.length > 3)
+            $("#expand-comments-" + i).html('Развернуть');
 
         for (var j in obj.comments) {
-            if( !obj.all )
-                if( ++count > 3 ) break;
+            if (!obj.all)
+                if (++count > 3) break;
 
             var comment_obj = obj.comments[j];
             var source = $("#comment_template").html();
@@ -1720,12 +1813,12 @@ console.log( 'send msg' );
             var html = template(comment_obj);
             $("#comment_parent_template-" + obj.id).append(html);
         }
-        if( obj.all )
+        if (obj.all)
             loginCtrl.newsData[i].all = false;
         else
             loginCtrl.newsData[i].all = true;
     },
-    drawNews: function() {
+    drawNews: function () {
         for (var i in loginCtrl.newsData) {
             loginCtrl.newsData[i].idx = i;
             loginCtrl.newsData[i].all = false;
@@ -1741,15 +1834,15 @@ console.log( 'send msg' );
             obj.create_date = a.fromNow();
             obj.comments_count = obj.comments.length;
             obj.user_id = localStorage.user_id;
-            console.log( "adm:"+parseInt( localStorage.admin, 10 )+' '+typeof(parseInt( localStorage.admin, 10 )) );
-            obj.admin = parseInt( localStorage.admin, 10 );
-            console.log( obj );
+            console.log("adm:" + parseInt(localStorage.admin, 10) + ' ' + typeof(parseInt(localStorage.admin, 10)));
+            obj.admin = parseInt(localStorage.admin, 10);
+            console.log(obj);
             var source = $("#post-item-template").html();
             var template = Handlebars.compile(source);
             var html = template(obj);
             $("#post-item-parent").append(html);
 
-            loginCtrl.fillComments( i );
+            loginCtrl.fillComments(i);
         }
     },
     news: function () {
@@ -1757,17 +1850,17 @@ console.log( 'send msg' );
 
         var role = 10;
 
-        if( localStorage.userdata != null )
-            role = JSON.parse( localStorage.userdata ).role;
+        if (localStorage.userdata != null)
+            role = JSON.parse(localStorage.userdata).role;
 
-        if( role == null ) role = 10;
-        if( role != 20 )
-            document.getElementById( 'vacancies-menu-item' ).style.display = 'none';
+        if (role == null) role = 10;
+        if (role != 20)
+            document.getElementById('vacancies-menu-item').style.display = 'none';
 
-            if( role == 10 || role == 30 )
-                document.getElementById( 'invite-menu-item' ).style.display = 'none';
+        if (role == 10 || role == 30)
+            document.getElementById('invite-menu-item').style.display = 'none';
 
-        if( localStorage.admin !== '1' ) {
+        if (localStorage.admin !== '1') {
             $('#post-entry-block').html('');
         }
 
@@ -1775,9 +1868,9 @@ console.log( 'send msg' );
         $('.photo-wrap_inner img').attr('src', localStorage.user_avatar);
         $('#name_surname_menu').text(localStorage.username);
         $('#file_entry').change(function (e) {
-            console.log( 'News img add' );
-            document.getElementById( 'img-preview' ).style.display = 'block';
-            loginCtrl.previewImg( e.target.files[0], 'file-preview' );
+            console.log('News img add');
+            document.getElementById('img-preview').style.display = 'block';
+            loginCtrl.previewImg(e.target.files[0], 'file-preview');
         });
 
 
@@ -1785,44 +1878,44 @@ console.log( 'send msg' );
             loginCtrl.newsData = result.data;
             loginCtrl.drawNews();
 
-/*            for (var i in result.data) {
-                console.log( 'idx:'+i );
-                var obj = result.data[i];
-                obj.avatar = "http://mp-ts.ru/api/web/img/" + obj.avatar;
-                if (obj.attachment !== null) {
-                    obj.attachment = "http://mp-ts.ru/api/web/img/" + obj.attachment;
-                }
-                obj.comment_avatar = localStorage.user_avatar;
+            /*            for (var i in result.data) {
+             console.log( 'idx:'+i );
+             var obj = result.data[i];
+             obj.avatar = "http://mp-ts.ru/api/web/img/" + obj.avatar;
+             if (obj.attachment !== null) {
+             obj.attachment = "http://mp-ts.ru/api/web/img/" + obj.attachment;
+             }
+             obj.comment_avatar = localStorage.user_avatar;
 
-                var a = moment(obj.create_date * 1000);
-                obj.create_date = a.fromNow();
-                obj.comments_count = obj.comments.length;
-                obj.user_id = localStorage.user_id;
-                console.log( obj );
-                var source = $("#post-item-template").html();
-                var template = Handlebars.compile(source);
-                var html = template(obj);
-                $("#post-item-parent").append(html);
+             var a = moment(obj.create_date * 1000);
+             obj.create_date = a.fromNow();
+             obj.comments_count = obj.comments.length;
+             obj.user_id = localStorage.user_id;
+             console.log( obj );
+             var source = $("#post-item-template").html();
+             var template = Handlebars.compile(source);
+             var html = template(obj);
+             $("#post-item-parent").append(html);
 
-                loginCtrl.fillComments( obj, "#comment_template" );
+             loginCtrl.fillComments( obj, "#comment_template" );
 
-                for (var j in obj.comments) {
-                    var comment_obj = obj.comments[j];
-                    var source = $("#comment_template").html();
-                    var template = Handlebars.compile(source);
-                    comment_obj.avatar = "http://mp-ts.ru/api/web/img/" + comment_obj.avatar;
-                    var html = template(comment_obj);
-                    $("#comment_parent_template-" + obj.id).append(html);
-                }
+             for (var j in obj.comments) {
+             var comment_obj = obj.comments[j];
+             var source = $("#comment_template").html();
+             var template = Handlebars.compile(source);
+             comment_obj.avatar = "http://mp-ts.ru/api/web/img/" + comment_obj.avatar;
+             var html = template(comment_obj);
+             $("#comment_parent_template-" + obj.id).append(html);
+             }
 
-            }
-*/
+             }
+             */
             ss();
         };
         var errorCallback = function (result) {
             console.log(result);
         };
-        requestService.get(urlService.news.index, {id:localStorage.user_id}, successCallback, errorCallback)
+        requestService.get(urlService.news.index, {id: localStorage.user_id}, successCallback, errorCallback)
 
     },
     delete_msg: function (sender_id, getter_id) {
@@ -1869,7 +1962,7 @@ console.log( 'send msg' );
             event_id: id
         };
 
-        console.log( data );
+        console.log(data);
 
         var successCallback = function (result) {
             console.log(result);
@@ -1899,8 +1992,8 @@ console.log( 'send msg' );
         var successCallback = function (result) {
             console.log(result.status);
             if (result.status) {
-                console.log( result );
-                loginCtrl.registerOutstanding( result.data );
+                console.log(result);
+                loginCtrl.registerOutstanding(result.data);
                 alert('Мероприятие успешно создано');
                 loginCtrl.calendar_index();
                 $(".add-date").click();
@@ -1919,30 +2012,30 @@ console.log( 'send msg' );
         var myCity = localStorage.city;
         loginCtrl.checkCity = $('#inmycity').is(':checked');
 
-        console.log( 'adm:'+localStorage.admin );
+        console.log('adm:' + localStorage.admin);
 
         $('#inmycity').unbind();
-        $('#inmycity').click( function() {
+        $('#inmycity').click(function () {
             loginCtrl.checkCity = this.checked;
             loginCtrl.calendar_index();
-        } );
+        });
 
         var successCallback = function (result) {
             loginCtrl.events = result;
 
-            console.log( result );
+            console.log(result);
 
             for (var i in result) {
                 var date = new Date(result[i].date * 1000).getDate();
 
-                var cty = (!result[i].city)?'':result[i].city;
+                var cty = (!result[i].city) ? '' : result[i].city;
 
-                if( !loginCtrl.checkCity || (myCity.toUpperCase() === cty.toUpperCase()) ) {
+                if (!loginCtrl.checkCity || (myCity.toUpperCase() === cty.toUpperCase())) {
 //                    $('#dayList_' + date).css({'background': '#eee','color':'#000'});
-                    $('#dayList_' + date).addClass( 'selected-date' );
+                    $('#dayList_' + date).addClass('selected-date');
                 } else {
 //                    $('#dayList_' + date).css({'background': ''});
-                    $('#dayList_' + date).removeClass( 'selected-date' );
+                    $('#dayList_' + date).removeClass('selected-date');
                 }
 
                 $('#dayList_' + date).click(function () {
@@ -1954,34 +2047,36 @@ console.log( 'send msg' );
                         var date = new Date(obj.date * 1000).getDate();
 
                         if (this.innerText == date)
-                            if( !loginCtrl.checkCity || (myCity.toUpperCase() == obj.city.toUpperCase()) ) {
-                            loginCtrl.viewEvent( obj.id );
-                            var h = new Date(obj.date * 1000).getHours();
-                            var m = new Date(obj.date * 1000).getMinutes();
-                            var text = '<p>' + obj.name + '</p>Время:' +
-                                (h < 10 ? ('0' + h) : h) + ':' + (m < 10 ? ('0' + m) : m) +
-                                (( obj.city != null )?('<p>' + obj.city + '</p>'):'<p>Место проведения не определено</p>') +
-                                '<p>' + obj.description + '</p>' +
-                                '<p onclick="loginCtrl.addUserToEvent(' + obj.id + ')" style="cursor:pointer;color: #000;background-color: #eee;border-radius: 13px;font-weight: 600;padding: 3px;">Я пойду</p>' +
-                                '<p>Количество записавшихся: ' + obj.subscribers + '</p>' +
-                                ((localStorage.admin != '0')?('<a href="event_list.html?id=' + obj.id + '">Список участников</a>'):'') +
-                                '<p>Создал: ' + obj.username + '</p>' +
-                                '<p>Комментарии</p>' +
-                                '<div class="comment-input"><textarea placeholder="Комментировать..." id="eventCommentText" cols="30" rows="10"></textarea></div><div class="comment-submit"><div id="send-comment-button" onclick="loginCtrl.sendEventComment('+obj.id+')" class="fa-share-square">отправить</div></div>'+
-                                '<div id="event-comments"></div>';
-                            setTimeout(function () {
-                                $('.eventCalendar-noEvents').html( text );
-                            }, 900);
+                            if (!loginCtrl.checkCity || (myCity.toUpperCase() == obj.city.toUpperCase())) {
+                                loginCtrl.viewEvent(obj.id);
+                                var h = new Date(obj.date * 1000).getHours();
+                                var m = new Date(obj.date * 1000).getMinutes();
+                                var text = '<p>' + obj.name + '</p>Время:' +
+                                    (h < 10 ? ('0' + h) : h) + ':' + (m < 10 ? ('0' + m) : m) +
+                                    (( obj.city != null ) ? ('<p>' + obj.city + '</p>') : '<p>Место проведения не определено</p>') +
+                                    '<p>' + obj.description + '</p>' +
+                                    '<p onclick="loginCtrl.addUserToEvent(' + obj.id + ')" style="cursor:pointer;color: #000;background-color: #eee;border-radius: 13px;font-weight: 600;padding: 3px;">Я пойду</p>' +
+                                    '<p>Количество записавшихся: ' + obj.subscribers + '</p>' +
+                                    ((localStorage.admin != '0') ? ('<a href="event_list.html?id=' + obj.id + '">Список участников</a>') : '') +
+                                    '<p>Создал: ' + obj.username + '</p>' +
+                                    '<p>Комментарии</p>' +
+                                    '<div class="comment-input"><textarea placeholder="Комментировать..." id="eventCommentText" cols="30" rows="10"></textarea></div><div class="comment-submit"><div id="send-comment-button" onclick="loginCtrl.sendEventComment(' + obj.id + ')" class="fa-share-square">отправить</div></div>' +
+                                    '<div id="event-comments"></div>';
+                                setTimeout(function () {
+                                    $('.eventCalendar-noEvents').html(text);
+                                }, 900);
 
-                            setTimeout( function() { loginCtrl.fillEventComments( obj.id );}, 1200 );
-                        }
+                                setTimeout(function () {
+                                    loginCtrl.fillEventComments(obj.id);
+                                }, 1200);
+                            }
 
                     }
                 })
 
                 var currentDay = loginCtrl.selectedCalendar;
-                console.log('#dayList_' + currentDay );
-                if( currentDay == '0' ) {
+                console.log('#dayList_' + currentDay);
+                if (currentDay == '0') {
                     currentDay = new Date().getDate();
                     $('#dayList_' + currentDay).click();
                 }
@@ -1993,46 +2088,46 @@ console.log( 'send msg' );
         };
 
 
-        if( localStorage.admin === '0' ) {
+        if (localStorage.admin === '0') {
             $('.add-date').remove();
         }
 
-        console.log( data );
+        console.log(data);
 
         requestService.get(urlService.event.index, data, successCallback, errorCallback)
 
     },
-    fillEventComments: function ( event_id ) {
+    fillEventComments: function (event_id) {
         var data = {
             id: event_id,
         };
 
         var successCallback = function (result) {
             console.log(result);
-            if( result.status ) {
-                var comments=result.data;
+            if (result.status) {
+                var comments = result.data;
                 var txt = "";
 
-                for( var i = 0; i < comments.length; i++ ) {
-                    var avatar = (comments[i].avatar)?"http://mp-ts.ru/api/web/img/"+comments[i].avatar:"http://placehold.it/350x150";
-                    txt += '<div class="event-comment"><div class="event-comment-avatar" style="background-image: url('+avatar+');"></div><div class="event-comment-username">'+comments[i].username+'</div><div class="event-comment-text">'+comments[i].text+'</div></div>';
+                for (var i = 0; i < comments.length; i++) {
+                    var avatar = (comments[i].avatar) ? "http://mp-ts.ru/api/web/img/" + comments[i].avatar : "http://placehold.it/350x150";
+                    txt += '<div class="event-comment"><div class="event-comment-avatar" style="background-image: url(' + avatar + ');"></div><div class="event-comment-username">' + comments[i].username + '</div><div class="event-comment-text">' + comments[i].text + '</div></div>';
                 }
 
-                document.getElementById( 'event-comments' ).innerHTML = txt;
+                document.getElementById('event-comments').innerHTML = txt;
             }
         };
         var errorCallback = function (result) {
             console.log(result);
 
         };
-        console.log( urlService.comment.event_index );
+        console.log(urlService.comment.event_index);
         requestService.get(urlService.comment.event_index, data, successCallback, errorCallback)
     },
-    sendEventComment: function ( event_id ) {
-        var txt = document.getElementById( 'eventCommentText' ).value;
+    sendEventComment: function (event_id) {
+        var txt = document.getElementById('eventCommentText').value;
         var data = {
             entry_id: event_id,
-            user_id: ((localStorage.user_id)?localStorage.user_id: -1),
+            user_id: ((localStorage.user_id) ? localStorage.user_id : -1),
             text: txt
         };
 
@@ -2046,13 +2141,13 @@ console.log( 'send msg' );
             console.log(result);
         };
 
-        console.log( data );
+        console.log(data);
         requestService.post(urlService.comment.event_add, data, successCallback, errorCallback)
     },
     gallery_add: function () {
         var fd = new FormData();
         var file = document.getElementById('file_gallery');
-        if( file.files == null || file.files[0] == null )
+        if (file.files == null || file.files[0] == null)
             return;
 
         fd.append('file', file.files[0]);
@@ -2062,8 +2157,8 @@ console.log( 'send msg' );
         xhr.onreadystatechange = function () {
             console.log(xhr.responseText);
 //            if (xhr.readyState == XMLHttpRequest.DONE) {
-                if( xhr.readyState == 4 )
-                    if( xhr.status == 200 ){
+            if (xhr.readyState == 4)
+                if (xhr.status == 200) {
                     if (JSON.parse(xhr.responseText).status) {
                         alert('Фото успешно добавлено');
                         // window.location.reload();
@@ -2147,12 +2242,12 @@ console.log( 'send msg' );
     categories_load: function () {
         loginCtrl.initSwipeMenu();
 
-        var role = JSON.parse( localStorage.userdata ).role;
-        if( role != 20 )
-            document.getElementById( 'vacancies-menu-item' ).style.display = 'none';
+        var role = JSON.parse(localStorage.userdata).role;
+        if (role != 20)
+            document.getElementById('vacancies-menu-item').style.display = 'none';
 
-            if( role == 10 || role == 30 )
-                document.getElementById( 'invite-menu-item' ).style.display = 'none';
+        if (role == 10 || role == 30)
+            document.getElementById('invite-menu-item').style.display = 'none';
 
         $('.top-user-image img').attr('src', localStorage.user_avatar);
         $('.photo-wrap_inner img').attr('src', localStorage.user_avatar);
@@ -2203,27 +2298,27 @@ console.log( 'send msg' );
     about_us: function () {
         loginCtrl.initSwipeMenu();
 
-        var role = JSON.parse( localStorage.userdata ).role;
-        if( role != 20 )
-            document.getElementById( 'vacancies-menu-item' ).style.display = 'none';
+        var role = JSON.parse(localStorage.userdata).role;
+        if (role != 20)
+            document.getElementById('vacancies-menu-item').style.display = 'none';
 
-            if( role == 10 || role == 30 )
-                document.getElementById( 'invite-menu-item' ).style.display = 'none';
+        if (role == 10 || role == 30)
+            document.getElementById('invite-menu-item').style.display = 'none';
 
         $('.top-user-image img').attr('src', localStorage.user_avatar);
         $('.photo-wrap_inner img').attr('src', localStorage.user_avatar);
         $('#name_surname_menu').text(localStorage.username);
     },
     initEventRequest: function () {
-        if( localStorage.userdata ) {
-            var userData = JSON.parse( localStorage.userdata );
-            console.log( userData );
+        if (localStorage.userdata) {
+            var userData = JSON.parse(localStorage.userdata);
+            console.log(userData);
 
-            $('#user_id').val( userData.id );
-            $('#user-name').val( userData.username );
-            $('#user-phone').val( userData.phone );
-            $('#user-email').val( userData.email );
-            $('#user-city').val( userData.city );
+            $('#user_id').val(userData.id);
+            $('#user-name').val(userData.username);
+            $('#user-phone').val(userData.phone);
+            $('#user-email').val(userData.email);
+            $('#user-city').val(userData.city);
 
         }
     },
@@ -2239,7 +2334,7 @@ console.log( 'send msg' );
             city: $('#user-city').val()
         };
 
-        console.log( data );
+        console.log(data);
         var successCallback = function (result) {
             console.log(result);
             if (result.status) {
@@ -2257,29 +2352,29 @@ console.log( 'send msg' );
         requestService.post(urlService.event.add_user, data, successCallback, errorCallback);
     },
     addUserToEvent: function (event_id) {
-        $('#backdrop').css('display','block');
-        $('#eventRegistration').css('display','block');
+        $('#backdrop').css('display', 'block');
+        $('#eventRegistration').css('display', 'block');
 
-        if( localStorage.userdata ) {
-            var userData = JSON.parse( localStorage.userdata );
-            console.log( userData );
+        if (localStorage.userdata) {
+            var userData = JSON.parse(localStorage.userdata);
+            console.log(userData);
 
-            $('#userID').val( userData.id );
-            $('#eventID').val( event_id );
-            $('#regEvtName').val( userData.username );
-            $('#regEvtPhone').val( userData.phone );
-            $('#regEvtMail').val( userData.email );
-            $('#regEvtCity').val( userData.city );
+            $('#userID').val(userData.id);
+            $('#eventID').val(event_id);
+            $('#regEvtName').val(userData.username);
+            $('#regEvtPhone').val(userData.phone);
+            $('#regEvtMail').val(userData.email);
+            $('#regEvtCity').val(userData.city);
 
         }
     },
     registerToEventCancel: function () {
-        $('#backdrop').css('display','none');
-        $('#eventRegistration').css('display','none');
+        $('#backdrop').css('display', 'none');
+        $('#eventRegistration').css('display', 'none');
     },
     registerToEvent: function () {
-        if( !$('#evtRegForm')[0].checkValidity() )
-            alert( "Заполните все поля формы" );
+        if (!$('#evtRegForm')[0].checkValidity())
+            alert("Заполните все поля формы");
         else {
 
             var data = {
@@ -2291,7 +2386,7 @@ console.log( 'send msg' );
                 city: $('#regEvtCity').val()
             };
 
-            console.log( data );
+            console.log(data);
             var successCallback = function (result) {
                 console.log(result);
                 if (result.status) {
@@ -2309,8 +2404,8 @@ console.log( 'send msg' );
 
             requestService.post(urlService.event.add_user, data, successCallback, errorCallback)
 
-            $('#backdrop').css('display','none');
-            $('#eventRegistration').css('display','none');
+            $('#backdrop').css('display', 'none');
+            $('#eventRegistration').css('display', 'none');
         }
     },
     addUserToEventOld: function (event_id) {
@@ -2335,18 +2430,18 @@ console.log( 'send msg' );
         requestService.post(urlService.event.add_user, data, successCallback, errorCallback)
 
     },
-    viewEvent: function( event_id ) {
+    viewEvent: function (event_id) {
         var data = {
             eid: event_id,
             uid: localStorage.user_id
         };
 
-        console.log( data );
+        console.log(data);
 
         var successCallback = function (result) {
             console.log(result);
             if (result.status) {
-                console.log( "Viewed" );
+                console.log("Viewed");
             }
             else {
                 return false;
@@ -2356,7 +2451,7 @@ console.log( 'send msg' );
             console.log(result);
         };
 
-        console.log( urlService.event.view );
+        console.log(urlService.event.view);
         requestService.post(urlService.event.view, data, successCallback, errorCallback)
 
     },
@@ -2409,8 +2504,8 @@ console.log( 'send msg' );
         };
         var successCallback = function (result) {
             if (result) {
-                    $("#post-item-parent").html("");
-                    loginCtrl.news();
+                $("#post-item-parent").html("");
+                loginCtrl.news();
             }
         };
         var errorCallback = function (result) {
@@ -2423,15 +2518,15 @@ console.log( 'send msg' );
         window.location = 'basket.html';
     },
     support_index: function () {
-        if( localStorage.userdata !== undefined ) {
-            var userdata =  JSON.parse(localStorage.userdata);
+        if (localStorage.userdata !== undefined) {
+            var userdata = JSON.parse(localStorage.userdata);
 
-            console.log( userdata );
+            console.log(userdata);
 
-            $('input[name=username]').val( userdata.username );
-            $('input[name=email]').val( userdata.email );
-            $('input[name=vk]').val( userdata.vk );
-            $('input[name=phone]').val( userdata.phone );
+            $('input[name=username]').val(userdata.username);
+            $('input[name=email]').val(userdata.email);
+            $('input[name=vk]').val(userdata.vk);
+            $('input[name=phone]').val(userdata.phone);
         }
     }
 
@@ -2441,10 +2536,14 @@ function Logger() {
     var req = new Request();
 
     this.write = function (str) {
-        req.get( '../api/logger.php', function( err, dta ) {
-            if( dta ) {console.log( "Log:"+JSON.stringify(dta) );}
-            else {console.log( "Log err:"+JSON.stringify(err) ) }
-        }, {data:str} );
+        req.get('../api/logger.php', function (err, dta) {
+            if (dta) {
+                console.log("Log:" + JSON.stringify(dta));
+            }
+            else {
+                console.log("Log err:" + JSON.stringify(err))
+            }
+        }, {data: str});
     }
 
 }

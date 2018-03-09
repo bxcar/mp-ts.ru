@@ -127,23 +127,22 @@
                             <div class="form-row">
                                 <input type="button" value="добавить" class="btn" onclick="loginCtrl.vacancy_create()">
                             </div>
-
                         </form>
                     </div>
                     <ul class="top-vacancies-list">
                         <li><span>список всех вакансий</span></li>
                         <li class="select-elem">
-                            <select name="role" class="select-role city-select">
+                            <select name="role" class="select-role city-select" id="vac-city-select">
                                 <option value="empty" selected="selected">Выберите Город</option>
-                                <option value="10">Москва</option>
-                                <option value="20">Питер</option>
+                                <!--<option value="10">Харьков</option>
+                                <option value="20">Москва</option>-->
                             </select>
                         </li>
                         <li class="select-elem">
-                            <select name="role" class="select-role vakancii-select">
+                            <select name="role" class="select-role vakancii-select" id="vac-vacancy-select">
                                 <option value="empty" selected="selected">Выберите Вакансию</option>
-                                <option value="10">Тонировщик</option>
-                                <option value="20">Винильщик</option>
+                                <!--<option value="10">Вакансия 2</option>
+                                <option value="20">Вакансия 1</option>-->
                             </select>
                         </li>
                         <li>
@@ -410,6 +409,11 @@
 <script src="common/services/urlService.js"></script>
 <script src="common/services/requestService.js"></script>
 <script src="bower_components/handlebars/handlebars.min.js"></script>
+<script>
+    /*$( document ).ready(function() {
+        $('.vacancies-list li').addClass('customfx');
+    });*/
+</script>
 
 </body>
 </html>
